@@ -1,27 +1,34 @@
 $fa = 1;
 $fs = .4;
 
-h1 = 40;
-w1 = 2;
-d1 = 30;
+// Base, vertical part
+BASE_H1 = 40;
+BASE_W1 = 3;
+BASE_D1 = 30;
 
-h2 = 3;
-w2 = 40;
-d2 = d1;
+// Base, horizontal part
+BASE_H2 = 5;
+BASE_W2 = 40;
+BASE_D2 = BASE_D1;
 
-hole_wall = 3;
-hole_h = 10;
+// Base bevel
+BEVEL_WALL = 3;
+BEVEL_H = 10;
+BEVEL_FILLET = 1;
 
-stick_h = 160;
-stick_w = 5;
-stick_d = 15;
+// Stick
+STICK_H = 160;
+STICK_W = 5;
+STICK_D = 15;
 
-head_h = 25;
-head_hole_h = 10;
+// Head
+HEAD_H = 25;
+HEAD_BEVEL_H = 10;
 
-press_fit = 0;
-tight_fit = .13;
-normal_fit = .250;
-loose_fit = .5;
+// Fit tolerances
+PRESS_FIT = 0;
+TIGHT_FIT = .13;
+NORMAL_FIT = .250;
+LOOSE_FIT = .5;
 
-delta = .01;
+DELTA = .01;
