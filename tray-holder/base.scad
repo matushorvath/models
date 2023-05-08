@@ -1,3 +1,5 @@
+include <common.scad>;
+
 // w, d, h
 
 module fillet(position, sides = [true, true, true, true]) {
@@ -8,24 +10,24 @@ module fillet(position, sides = [true, true, true, true]) {
         // Cylindrical shapes to remove from fillet base
         union() {
             if (sides[0])
-                translate([0, -delta, position[2]])
+                translate([0, -DELTA, position[2]])
                     rotate([-90, 0, 0])
-                        cylinder(position[1] + 2 * delta, position[2], position[2]);
+                        cylinder(position[1] + 2 * DELTA, position[2], position[2]);
 
             if (sides[1])
-                translate([position[0], -delta, position[2]])
+                translate([position[0], -DELTA, position[2]])
                     rotate([-90, 0, 0])
-                        cylinder(position[1] + 2 * delta, position[2], position[2]);
+                        cylinder(position[1] + 2 * DELTA, position[2], position[2]);
 
             if (sides[2])
-                translate([-delta, 0, position[2]])
+                translate([-DELTA, 0, position[2]])
                     rotate([0, 90, 0])
-                        cylinder(position[0] + 2 * delta, position[2], position[2]);
+                        cylinder(position[0] + 2 * DELTA, position[2], position[2]);
 
             if (sides[3])
-                translate([-delta, position[1], position[2]])
+                translate([-DELTA, position[1], position[2]])
                     rotate([0, 90, 0])
-                        cylinder(position[0] + 2 * delta, position[2], position[2]);
+                        cylinder(position[0] + 2 * DELTA, position[2], position[2]);
         }
     }
 }
@@ -49,36 +51,34 @@ module bevel(position, fillet_size) {
     }
 }
 
-include <common.scad>;
-
 // Base
 difference() {
     // bevel position
     bevel_position = [
-        base_w2 - (hole_wall + stick_w + hole_wall),
-        (base_d2 - (hole_wall + stick_d + hole_wall)) / 2,
-        base_h2
+        BASE_W2 - (BEVEL_WALL + STICK_W + BEVEL_WALL),
+        (BASE_D2 - (BEVEL_WALL + STICK_D + BEVEL_WALL)) / 2,
+        BASE_H2
     ];
 
     union() {
         // Vertical part of base
-        translate([0, 0, -base_h1])
-            cube([base_w1, base_d1, base_h1 + delta]);
+        translate([0, 0, -BASE_H1])
+            cube([BASE_W1, BASE_D1, BASE_H1 + DELTA]);
 
         // Horizontal part of base
-        cube([base_w2, base_d2, base_h2]);
+        cube([BASE_W2, BASE_D2, BASE_H2]);
 
         // Bevel
         translate(bevel_position)
             bevel([
-                hole_wall + stick_w + hole_wall,
-                hole_wall + stick_d + hole_wall,
-                hole_h
-            ], hole_fillet);
+                BEVEL_WALL + STICK_W + BEVEL_WALL,
+                BEVEL_WALL + STICK_D + BEVEL_WALL,
+                BEVEL_H
+            ], BEVEL_FILLET);
     };
 
     // Bevel hole
     translate(bevel_position)
-        translate([hole_wall, hole_wall, -(base_h2 + delta)])
-            cube([stick_w, stick_d, base_h2 + hole_h + 2 * delta]);
+        translate([BEVEL_WALL, BEVEL_WALL, -(BASE_H2 + DELTA)])
+            cube([STICK_W, STICK_D, BASE_H2 + BEVEL_H + 2 * DELTA]);
 };

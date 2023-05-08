@@ -3,4 +3,4 @@ include <common.scad>;
 // w, d, h
 
 // Stick
-cube([stick_w, stick_d, stick_h]);
+cube([STICK_W, STICK_D, STICK_H]);
