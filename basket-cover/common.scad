@@ -22,3 +22,6 @@ CLIP_HOLE_R = 8;
 CLIP_WALL = 4;
 CLIP_REDUCE = 1;
 CLIP_ANGLE = 30;
+
+// Clip positition
+BAR_CLIP_POS = 120;
