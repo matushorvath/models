@@ -6,7 +6,7 @@ body_r = CLIP_HOLE_R + CLIP_WALL;
 module clip_connector_pin() {
     translate([0, body_r - CLIP_REDUCE, BAR_WIDTH / 2])
         rotate([-90, 0, 0])
-            connector_pin();
+            connector_pin(CLIP_CONNECTOR_DEPTH);
 }
 
 difference () {
