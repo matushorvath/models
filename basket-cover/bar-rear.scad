@@ -17,9 +17,12 @@ difference() {
             rotate([-90, 0, 0])
                 connector_hole();
 
-        // Connector hole for potential 90 degree rear bar
+        // Connector through hole for potential 90 degree rear bar (made from two blind holes)
         translate([BAR_WIDTH / 2, BAR_WIDTH / 2, BAR_WIDTH + DELTA])
             rotate([180, 0, 0])
+                connector_hole();
+        translate([BAR_WIDTH / 2, BAR_WIDTH / 2, -DELTA])
+            rotate([0, 0, 0])
                 connector_hole();
 
         // Connector hole for front half of the bar
