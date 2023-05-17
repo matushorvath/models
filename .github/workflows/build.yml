@@ -1,0 +1,29 @@
+name: Build
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-22.04
+
+    strategy:
+      matrix:
+        directory: ['basket-cover', 'tray-holder']
+
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v3
+
+      - name: Install OpenSCAD
+        run: sudo apt install openscad
+
+      - name: Build sources
+        run: |
+          cd ${{ matrix.directory }}
+          make
