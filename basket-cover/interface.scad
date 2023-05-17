@@ -1,14 +1,5 @@
 include <common.scad>;
 
-
-// Interface with the board
-// INTERFACE_STAND_BORDER = 2;
-// INTERFACE_STAND_HEIGHT = 2;
-// INTERFACE_EYE_BORDER = 3;
-// INTERFACE_EYE_OVERLAP = 3;
-
-// BAR_WIDTH = 8;
-
 stand = [
     BAR_WIDTH + 2 * INTERFACE_EYE_WIDTH,
     BAR_WIDTH + 2 * INTERFACE_EYE_WIDTH,
@@ -24,9 +15,9 @@ eye = [
 eye_pos_z = stand[2] + eye[2] / 2 - INTERFACE_EYE_SINK;
 
 opening = [
-    BAR_WIDTH + NORMAL_FIT,
+    BAR_WIDTH + TIGHT_FIT,
     eye[1] + 2 * DELTA,
-    BAR_WIDTH + NORMAL_FIT
+    BAR_WIDTH + TIGHT_FIT
 ];
 
 gap = [
@@ -46,6 +37,8 @@ difference() {
         // Eye body
         translate([0, 0, eye_pos_z])
             cube(eye, center = true);
+
+        // Bottom fillets
     }
 
     union() {

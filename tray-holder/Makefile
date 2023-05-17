@@ -7,7 +7,7 @@ endif
 .SUFFIXES: .scad .stl
 
 SOURCES=base.stl head.stl stick.stl
-INCLUDES=common.scad
+INCLUDES=common.scad hippo.stl
 
 %.stl: %.scad $(INCLUDES)
 	$(OPENSCAD) -o $@ $<

@@ -1,36 +1,5 @@
 include <common.scad>;
-
-// w, d, h
-
-module fillet(position, sides = [true, true, true, true]) {
-    difference() {
-        // Fillet base
-        cube([position[0], position[1], position[2]]);
-
-        // Cylindrical shapes to remove from fillet base
-        union() {
-            if (sides[0])
-                translate([0, -DELTA, position[2]])
-                    rotate([-90, 0, 0])
-                        cylinder(position[1] + 2 * DELTA, position[2], position[2]);
-
-            if (sides[1])
-                translate([position[0], -DELTA, position[2]])
-                    rotate([-90, 0, 0])
-                        cylinder(position[1] + 2 * DELTA, position[2], position[2]);
-
-            if (sides[2])
-                translate([-DELTA, 0, position[2]])
-                    rotate([0, 90, 0])
-                        cylinder(position[0] + 2 * DELTA, position[2], position[2]);
-
-            if (sides[3])
-                translate([-DELTA, position[1], position[2]])
-                    rotate([0, 90, 0])
-                        cylinder(position[0] + 2 * DELTA, position[2], position[2]);
-        }
-    }
-}
+include <../common/fillet.scad>
 
 module bevel(position, fillet_size) {
     difference() {
@@ -53,7 +22,7 @@ module bevel(position, fillet_size) {
 
 // Base
 difference() {
-    // bevel position
+    // Bevel position
     bevel_position = [
         BASE_W2 - (BEVEL_WALL + STICK_W + BEVEL_WALL),
         (BASE_D2 - (BEVEL_WALL + STICK_D + BEVEL_WALL)) / 2,
