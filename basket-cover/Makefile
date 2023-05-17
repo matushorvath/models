@@ -8,4 +8,4 @@ INCLUDES=common.scad connector.scad
 	$(OPENSCAD) -o $@ $<
 
 .PHONY: all
-all: clip.stl bar-rear.stl bar-front.stl
+all: clip.stl bar-rear.stl bar-front.stl interface.stl

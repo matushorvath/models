@@ -1,0 +1,60 @@
+include <common.scad>;
+
+
+// Interface with the board
+// INTERFACE_STAND_BORDER = 2;
+// INTERFACE_STAND_HEIGHT = 2;
+// INTERFACE_EYE_BORDER = 3;
+// INTERFACE_EYE_OVERLAP = 3;
+
+// BAR_WIDTH = 8;
+
+stand = [
+    BAR_WIDTH + 2 * INTERFACE_EYE_WIDTH,
+    BAR_WIDTH + 2 * INTERFACE_EYE_WIDTH,
+    INTERFACE_STAND_HEIGHT
+];
+
+eye = [
+        BAR_WIDTH + 2 * INTERFACE_EYE_WIDTH,
+        INTERFACE_EYE_DEPTH,
+        BAR_WIDTH + 2 * INTERFACE_EYE_WIDTH
+];
+
+eye_pos_z = stand[2] + eye[2] / 2 - INTERFACE_EYE_SINK;
+
+opening = [
+    BAR_WIDTH + NORMAL_FIT,
+    eye[1] + 2 * DELTA,
+    BAR_WIDTH + NORMAL_FIT
+];
+
+gap = [
+    BAR_WIDTH - 2 * INTERFACE_EYE_OVERLAP,
+    eye[1] + 2 * DELTA,
+    INTERFACE_EYE_WIDTH + 2 * DELTA
+];
+
+gap_pos_z = eye_pos_z + eye[2] / 2 - gap[2] / 2 + DELTA;
+
+difference() {
+    union() {
+        // Stand
+        translate([0, 0, stand[2] / 2])
+        cube(stand, center = true);
+
+        // Eye body
+        translate([0, 0, eye_pos_z])
+            cube(eye, center = true);
+    }
+
+    union() {
+        // Eye opening
+        translate([0, 0, eye_pos_z])
+            cube(opening, center = true);
+
+        // Eye gap
+        translate([0, 0, gap_pos_z])
+            cube(gap, center = true);
+    }
+}
