@@ -1,0 +1,26 @@
+include <../common/constants.scad>
+
+$fa = 1;
+$fs = .4;
+
+// Plate
+PLATE_WIDTH = 1.5;
+
+PLATE_LENGTH = 120;
+PLATE_USABLE_LENGTH = 40;
+PLATE_INSIDE_HEIGHT = 35;
+PLATE_OUTSIDE_HEIGHT = 25;
+
+PLATE_CUTOFF = 5;
+
+PLATE_ANGLE = 8;
+
+// Wallet
+WALLET_WIDTH = 60;
+WALLET_DEPTH = 17;
+
+// Holder
+HOLDER_BORDER = 3;
+HOLDER_HEIGHT = 10;
+HOLDER_OFFSET_Y = 0;
+HOLDER_OFFSET_Z = 15;
