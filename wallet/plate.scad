@@ -1,4 +1,5 @@
 include <common.scad>
+include <connector.scad>
 
 holder_width = WALLET_WIDTH + HOLDER_BORDER;
 holder_depth = WALLET_DEPTH + HOLDER_BORDER;
@@ -30,28 +31,19 @@ module plate() {
         }
 }
 
-module frame() {
-    difference() {
-        cube([holder_width, holder_depth, HOLDER_HEIGHT], center = true);
-        cube([WALLET_WIDTH, WALLET_DEPTH, HOLDER_HEIGHT + 2 * DELTA], center = true);
-    }
-}
+difference() {
+    plate();
 
-union() {
-    difference() {
-        plate();
-
-        // Make top edge parallel to the holder
-        translate([-DELTA, 0, -DELTA])
-            rotate([90 - PLATE_ANGLE, 0, 0])
-                cube([PLATE_LENGTH + 2 * DELTA, PLATE_WIDTH * 2, PLATE_WIDTH]);
-    }
-
-    translate([
-        PLATE_USABLE_LENGTH - holder_width / 2,
-        HOLDER_OFFSET_Y,
-        HOLDER_OFFSET_Z
-    ])
+    // Make top edge parallel to the holder
+    translate([-DELTA, 0, -DELTA])
         rotate([90 - PLATE_ANGLE, 0, 0])
-            frame();
+            cube([PLATE_LENGTH + 2 * DELTA, PLATE_WIDTH * 2, PLATE_WIDTH]);
+
+    // Connector holes
+    translate([CONNECTOR_POS_X1, CONNECTOR_POS_Y, -DELTA])
+        connector_hole(CONNECTOR_WIDTH, PLATE_WIDTH + 2 * DELTA);
+    translate([CONNECTOR_POS_X2, CONNECTOR_POS_Y, -DELTA])
+        connector_hole(CONNECTOR_WIDTH, PLATE_WIDTH + 2 * DELTA);
 }
+
+//include <frame.scad>
