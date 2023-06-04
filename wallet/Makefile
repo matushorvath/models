@@ -6,11 +6,14 @@ endif
 
 .SUFFIXES: .scad .stl
 
-SOURCES=frame.stl plate.stl
+SOURCES=frame.stl plate.stl bottom.stl
 INCLUDES=common.scad connector.scad
 
 %.stl: %.scad $(INCLUDES)
 	$(OPENSCAD) -o $@ $<
 
-.PHONY: all
+.PHONY: all clean
 all: $(SOURCES)
+
+clean:
+	rm -f $(SOURCES:.scad=.stl)
