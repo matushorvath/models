@@ -7,14 +7,14 @@ BASE_W1 = 3;
 BASE_D1 = 30;
 
 // Base, horizontal part
-BASE_H2 = 5;
+BASE_H2 = 6;
 BASE_W2 = 40;
 BASE_D2 = BASE_D1;
 
 // Base bevel
 BEVEL_WALL = 3;
 BEVEL_H = 10;
-BEVEL_FILLET = 1;
+BEVEL_FILLET = 4;
 
 // Stick
 STICK_H = 160;
