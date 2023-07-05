@@ -88,6 +88,21 @@ module stand_bottom_hole() {
     }
 }
 
+module vent_hole() {
+    // Recess inside
+    translate([VENT_HOLE_X, BASE_Y / 2, BOTTOM_Z - VENT_HOLE_Z])
+        cylinder(VENT_HOLE_Z + DELTA, d = VENT_HOLE_D1, true);
+
+    // Hole through
+    translate([VENT_HOLE_X, BASE_Y / 2, - DELTA])
+        cylinder(BOTTOM_Z + 2 * DELTA, d = VENT_HOLE_D2, true);
+}
+
+// VENT_HOLE_Y = 32;
+// VENT_HOLE_Z = 1.25;
+// VENT_HOLE_D1 = 6;
+// VENT_HOLE_D2 = 2.5;
+
 screws = [
     [(BASE_X - SCREW_DIST) / 2, (BASE_Y - SCREW_DIST) / 2],
     [(BASE_X - SCREW_DIST) / 2, (BASE_Y + SCREW_DIST) / 2],
@@ -111,6 +126,9 @@ difference() {
         translate([pos[0], pos[1], -DELTA])
             stand_bottom_hole();
     }
+
+    // Vent hole
+    vent_hole();
 }
 
-// TODO edges, ribs, hole
+// TODO ribs, hole
