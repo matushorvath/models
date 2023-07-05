@@ -34,4 +34,6 @@ VENT_HOLE_Z = 1.25;
 VENT_HOLE_D1 = 6;
 VENT_HOLE_D2 = 2.5;
 
-// TODO ribs to hold the metal insert
+RIB_DIST = 31;
+RIB_Z = 4.5;
+RIB_D = 5;
