@@ -4,6 +4,40 @@ use <MCAD/boxes.scad>
 // Higher than BASE_MAX_Z + CORNER_RADIUS, for cutting purposes
 base_top_z = BASE_MAX_Z + CORNER_RADIUS + DELTA;
 
+// Rounded cube to be subtracted from the body to create edges
+module diagonal_cut_rounded_cube(min_z, max_z, edge) {
+    difference() {
+        translate([edge, edge, min_z])
+            roundedCube([
+                BASE_X - 2 * edge,
+                BASE_Y - 2 * edge,
+                base_top_z
+            ], CORNER_RADIUS - edge, true, false);
+
+        // Diagonal cut
+        // 1 -- 2   4 -- 5
+        //   \  |     \  |
+        //      0        3
+        polyhedron(points = [
+            [BASE_X + DELTA, 0 - DELTA, 0],
+            [0 - DELTA, BASE_Y, 0],
+            [BASE_X + DELTA, BASE_Y + DELTA, 0],
+            [BASE_X + DELTA, 0 - DELTA, min_z],
+            [0 - DELTA, BASE_Y + DELTA, min_z],
+            [BASE_X + DELTA, BASE_Y + DELTA, max_z]
+        ], faces = [
+            // points must be clockwise
+            [0, 2, 1],
+            [3, 4, 5],
+            [0, 1, 4, 3],
+            [1, 2, 5, 4],
+            [2, 0, 3, 5]
+        ]);
+
+        // TODO the cut is not smooth in the corners
+    }
+}
+
 module body() {
     difference() {
         // Base body
@@ -21,32 +55,11 @@ module body() {
                 base_top_z
             ], CORNER_RADIUS - EDGE_WIDTH, false, false);
 
-        // Horizontal base cut
-        translate([0, 0, BASE_MIN_Z])
-            linear_extrude(height = base_top_z)
-                polygon(points = [
-                    [0, 0], [BASE_X, 0], [0, BASE_Y]
-                ]);
+        // Base edge
+        diagonal_cut_rounded_cube(BASE_MIN_Z - EDGE_Z, BASE_MAX_Z - EDGE_Z, EDGE_X);
 
-        // Diagonal base cut
-        // 1 -- 2   4 -- 5
-        //   \  |     \  |
-        //      0        3
-        polyhedron(points = [
-            [BASE_X + DELTA, 0 - DELTA, BASE_MIN_Z],
-            [0 - DELTA, BASE_Y + DELTA, BASE_MIN_Z],
-            [BASE_X + DELTA, BASE_Y + DELTA, BASE_MAX_Z],
-            [BASE_X + DELTA, 0 - DELTA, base_top_z],
-            [0 - DELTA, BASE_Y, base_top_z],
-            [BASE_X + DELTA, BASE_Y + DELTA, base_top_z]
-        ], faces = [
-            // points must be clockwise
-            [0, 2, 1],
-            [3, 4, 5],
-            [0, 1, 4, 3],
-            [1, 2, 5, 4],
-            [2, 0, 3, 5]
-        ]);
+        // Base cutoff
+        diagonal_cut_rounded_cube(BASE_MIN_Z, BASE_MAX_Z, -DELTA);
     }
 }
 
