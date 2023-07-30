@@ -1,7 +1,9 @@
 ifdef WSLENV
-OPENSCAD="/mnt/c/Program Files/OpenSCAD/openscad.exe"
+	OPENSCAD="/mnt/c/Program Files/OpenSCAD/openscad.exe"
+else ifeq ($(shell uname -s),Darwin)
+	OPENSCAD="/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD"
 else
-OPENSCAD=openscad
+	OPENSCAD=openscad
 endif
 
 .SUFFIXES: .scad .stl
