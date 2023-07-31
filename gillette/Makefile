@@ -1,8 +1,4 @@
-ifdef WSLENV
-OPENSCAD="/mnt/c/Program Files/OpenSCAD/openscad.exe"
-else
-OPENSCAD=openscad
-endif
+include ../common/openscad.mk
 
 .SUFFIXES: .scad .stl
 
