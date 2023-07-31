@@ -1,10 +1,13 @@
 include <common.scad>
-include <connector.scad>
+include <../common/fillet.scad>
 
 body_r = CLIP_HOLE_R + CLIP_WALL;
 
 interface_l = 2 * body_r + 2 * INTERFACE_MARGIN;
 interface_d = CLIP_WIDTH + 2 * INTERFACE_MARGIN;
+
+fillet_l = 2 * body_r + 2 * INTERFACE_FILLET;
+fillet_d = CLIP_WIDTH + 2 * INTERFACE_FILLET;
 
 difference () {
     union() {
@@ -16,8 +19,13 @@ difference () {
             cube([2 * body_r, body_r, CLIP_WIDTH], center = true);
 
         // Interface with the board
-        translate([0, body_r + INTERFACE_WIDTH / 2 - DELTA, 0])
+        translate([0, body_r + INTERFACE_OFFSET_W + INTERFACE_WIDTH / 2, 0])
             cube([interface_l, INTERFACE_WIDTH, interface_d], center = true);
+
+        // Fillets around the interface
+        translate([-fillet_l / 2, body_r + INTERFACE_OFFSET_W + DELTA, -fillet_d / 2])
+            rotate([90, 0, 0])
+                fillet([fillet_l, fillet_d, INTERFACE_FILLET], sides = [true, true, true, true]);
     }
 
     union() {
