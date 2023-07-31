@@ -77,3 +77,4 @@ union() {
 
 // TODO space to keep the wooden extra parts
 // TODO blade space; add space for extra blades as well; maybe slots? deep narrow holes (but how to remove) or blade-sized holes
+// TODO put back the support below BT in some form

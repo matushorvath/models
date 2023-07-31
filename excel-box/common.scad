@@ -18,9 +18,7 @@ CUTOUT_SHIFT_X = 10;
 
 // Big tool
 BT_W1 = 20.2;
-//BT_D1 = 21.8;
 BT_W2 = 18.7;
-//BT_D2 = 14.5;
 BT_L1 = 74;
 BT_L2 = 75;
 //BT_BLADE_D = 6.3;
@@ -30,7 +28,6 @@ BT_BOTTOM_D = 2;
 // Medium tool
 MT_W1 = 11.4;
 MT_W2 = 18.7;
-//MT_D2 = 14.5;
 MT_L1 = 99;
 MT_L2 = 55;
 MT_BLADE_D = 6.3;
@@ -39,7 +36,6 @@ MT_BLADE_L = 24;
 // Small tool
 ST_W1 = 8.2;
 ST_W2 = 14.3;
-//ST_D2 = 11;
 ST_L1 = 101;
 ST_L2 = 51;
 ST_BLADE_D = 5;
