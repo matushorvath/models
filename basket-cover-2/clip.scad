@@ -1,4 +1,5 @@
 include <common.scad>
+include <connector.scad>
 include <../common/fillet.scad>
 
 body_r = CLIP_HOLE_R + CLIP_WALL;
@@ -18,14 +19,14 @@ difference () {
         translate([0, body_r / 2, 0])
             cube([2 * body_r, body_r, CLIP_WIDTH], center = true);
 
-        // Interface with the board
-        translate([0, body_r + INTERFACE_OFFSET_W + INTERFACE_WIDTH / 2, 0])
-            cube([interface_l, INTERFACE_WIDTH, interface_d], center = true);
+        // Connector pins
+        translate([CONNECTOR_OFFSET_L, body_r - DELTA, 0])
+            rotate([-90, 0, 0])
+                connector_pin(CONNECTOR_DEPTH);
 
-        // Fillets around the interface
-        translate([-fillet_l / 2, body_r + INTERFACE_OFFSET_W + DELTA, -fillet_d / 2])
-            rotate([90, 0, 0])
-                fillet([fillet_l, fillet_d, INTERFACE_FILLET], sides = [true, true, true, true]);
+        translate([-CONNECTOR_OFFSET_L, body_r - DELTA, 0])
+            rotate([-90, 0, 0])
+                connector_pin(CONNECTOR_DEPTH);
     }
 
     union() {
