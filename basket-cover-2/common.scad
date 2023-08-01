@@ -6,7 +6,7 @@ $fs = .4;
 // Clip
 CLIP_HOLE_R = 7.95;
 CLIP_WALL = 5;
-CLIP_ANGLE = 30;    // TODO tune the angle
+CLIP_ANGLE = 30;
 CLIP_WIDTH = 10;
 
 // Interface

@@ -4,12 +4,6 @@ include <../common/fillet.scad>
 
 body_r = CLIP_HOLE_R + CLIP_WALL;
 
-interface_l = 2 * body_r + 2 * INTERFACE_MARGIN;
-interface_d = CLIP_WIDTH + 2 * INTERFACE_MARGIN;
-
-fillet_l = 2 * body_r + 2 * INTERFACE_FILLET;
-fillet_d = CLIP_WIDTH + 2 * INTERFACE_FILLET;
-
 difference () {
     union() {
         // Round part of body
@@ -36,8 +30,8 @@ difference () {
         // Slot
         linear_extrude(height = CLIP_WIDTH + 2 * DELTA, center = true)
             polygon(points = [
-                [0, CLIP_HOLE_R], 
-                [-30*sin(CLIP_ANGLE), -30*cos(CLIP_ANGLE)],
-                [30*sin(CLIP_ANGLE), -30*cos(CLIP_ANGLE)]]);
+                [0, CLIP_HOLE_R],
+                [-(body_r + CLIP_HOLE_R)*tan(CLIP_ANGLE), -body_r - DELTA],
+                [(body_r + CLIP_HOLE_R)*tan(CLIP_ANGLE), -body_r - DELTA]]);
     }
 }
