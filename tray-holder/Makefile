@@ -1,16 +1,16 @@
-ifdef WSLENV
-OPENSCAD="/mnt/c/Program Files/OpenSCAD/openscad.exe"
-else
-OPENSCAD=openscad
-endif
+include ../common/openscad.mk
 
 .SUFFIXES: .scad .stl
 
-SOURCES=base.stl head.stl stick.stl
+TARGETS=base.stl head.stl stick.stl
 INCLUDES=common.scad hippo.stl
 
 %.stl: %.scad $(INCLUDES)
 	$(OPENSCAD) -o $@ $<
 
-.PHONY: all
-all: $(SOURCES)
+.PHONY: all clean
+
+all: $(TARGETS)
+
+clean:
+	rm -f $(TARGETS:.scad=.stl)
