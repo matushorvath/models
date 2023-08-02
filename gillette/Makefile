@@ -2,14 +2,15 @@ include ../common/openscad.mk
 
 .SUFFIXES: .scad .stl
 
-SOURCES=bottom.stl
+TARGETS=bottom.stl
 INCLUDES=common.scad
 
 %.stl: %.scad $(INCLUDES)
 	$(OPENSCAD) -o $@ $<
 
 .PHONY: all clean
-all: $(SOURCES)
+
+all: $(TARGETS)
 
 clean:
-	rm -f $(SOURCES:.scad=.stl)
+	rm -f $(TARGETS:.scad=.stl)
