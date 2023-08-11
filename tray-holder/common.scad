@@ -12,7 +12,7 @@ BASE_W2 = 40;
 BASE_D2 = BASE_D1;
 
 // Base bevel
-BEVEL_WALL = 3;
+BEVEL_WALL = 4;
 BEVEL_H = 10;
 BEVEL_FILLET = 4;
 
