@@ -32,3 +32,11 @@ NORMAL_FIT = .250;
 LOOSE_FIT = .5;
 
 DELTA = .01;
+
+// Top base
+TOP_BASE_H = 3;
+TOP_BASE_W = 30;
+TOP_BASE_D = 40;
+
+// Top stick
+TOP_STICK_H = 60;
