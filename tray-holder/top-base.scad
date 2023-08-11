@@ -7,13 +7,13 @@ module bevel(position, fillet_size) {
 
     // Bevel fillet
     fillet_position = [
-        position[0] + fillet_size,
-        position[1],
+        position[0] + 2 * fillet_size,
+        position[1] + 2 * fillet_size,
         fillet_size
     ];
 
-    translate([-fillet_size, 0, 0])
-        fillet(fillet_position, [true, false, false, false]);
+    translate([-fillet_size, -fillet_size, 0])
+        fillet(fillet_position, [true, true, true, true]);
 }
 
 // Base
@@ -21,23 +21,19 @@ difference() {
     // Bevel position and size
     bevel_size = [
         BEVEL_WALL + STICK_W + BEVEL_WALL,
-        BASE_D2,
+        BEVEL_WALL + STICK_D + BEVEL_WALL,
         BEVEL_H
     ];
 
     bevel_position = [
-        BASE_W2 - bevel_size[0],
-        BASE_D2 - bevel_size[1],
-        BASE_H2
+        (TOP_BASE_W - bevel_size[0]) / 2,
+        (TOP_BASE_D - bevel_size[1]) / 2,
+        TOP_BASE_H
     ];
 
     union() {
-        // Vertical part of base
-        translate([0, 0, -BASE_H1])
-            cube([BASE_W1, BASE_D1, BASE_H1 + DELTA]);
-
         // Horizontal part of base
-        cube([BASE_W2, BASE_D2, BASE_H2]);
+        cube([TOP_BASE_W, TOP_BASE_D, TOP_BASE_H]);
 
         // Bevel
         translate(bevel_position)
@@ -46,6 +42,6 @@ difference() {
 
     // Bevel hole
     translate(bevel_position)
-        translate([BEVEL_WALL, (bevel_size[1] - STICK_D) / 2, -(BASE_H2 + DELTA)])
-            cube([STICK_W, STICK_D, BASE_H2 + BEVEL_H + 2 * DELTA]);
+        translate([BEVEL_WALL, (bevel_size[1] - STICK_D) / 2, -(TOP_BASE_H + DELTA)])
+            cube([STICK_W, STICK_D, TOP_BASE_H + BEVEL_H + 2 * DELTA]);
 };

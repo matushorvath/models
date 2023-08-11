@@ -12,7 +12,7 @@ BASE_W2 = 40;
 BASE_D2 = BASE_D1;
 
 // Base bevel
-BEVEL_WALL = 3;
+BEVEL_WALL = 4;
 BEVEL_H = 10;
 BEVEL_FILLET = 4;
 
@@ -32,3 +32,11 @@ NORMAL_FIT = .250;
 LOOSE_FIT = .5;
 
 DELTA = .01;
+
+// Top base
+TOP_BASE_H = 3;
+TOP_BASE_W = 30;
+TOP_BASE_D = 40;
+
+// Top stick
+TOP_STICK_H = 60;
