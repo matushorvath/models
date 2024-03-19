@@ -14,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        directory: ['basket-cover', 'basket-cover-2', 'excel-box', 'gillette', 'tray-holder', 'wallet']
+        directory: ['basket-cover', 'basket-cover-2', 'computer-foot', 'excel-box', 'gillette', 'tray-holder', 'wallet']
 
     steps:
       - name: Checkout sources
