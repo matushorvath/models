@@ -2,7 +2,7 @@ include ../common/openscad.mk
 
 .SUFFIXES: .scad .stl
 
-TARGETS=frame.stl
+TARGETS=left.stl right.stl
 INCLUDES=common.scad
 
 %.stl: %.scad $(INCLUDES)
