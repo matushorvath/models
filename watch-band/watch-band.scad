@@ -50,7 +50,7 @@ difference() {
 
 // Pin
 rotate([0, 90, 0])
-    translate([PIN_SHIFT, 0, HOLE_H / 2 - PIN_Z / 2 + DELTA])
+    translate([0, 0, HOLE_H / 2 - PIN_Z / 2 + DELTA])
         union() {
             cube([PIN_Y, PIN_X, PIN_Z], center=true);
 

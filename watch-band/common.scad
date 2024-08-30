@@ -3,7 +3,7 @@ include <../common/constants.scad>
 $fa = 1;
 $fs = .4;
 
-HOLE_H = 5;
+HOLE_H = 3;
 HOLE_W = 21.5;
 
 WALL = 2;
@@ -29,6 +29,4 @@ NFC_Z = .2;
 
 PIN_X = 4.9; // 5
 PIN_Y = 1.9; // 2
-PIN_Z = 1.5;
-PIN_SHIFT = 10;
-// TODO shift the pin
+PIN_Z = 0.7;
