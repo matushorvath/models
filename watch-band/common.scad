@@ -7,8 +7,9 @@ HOLE_H = 5;
 HOLE_W = 21.5;
 
 WALL = 2;
+WALL_ADD_TOP = 1;
 
-DEPTH = 18; // 6.5;
+DEPTH = 32; // 6.5;
 
 OUTSIDE_RADIUS = 2.5;
 EDGE_RADIUS = 0.5;
@@ -19,8 +20,15 @@ RFID_INSIDE_R = 5.5 / 2; // actual diameter is 6
 
 RFID_CHIP_X = 5.5;
 RFID_CHIP_Y = 7.5;
-RFID_Z = .5;
+RFID_Z = .6;
+RFID_CHIP_OVERLAP = 1;
 
-PIN_X = 5;
-PIN_Y = 2;
+NFC_X = 12;
+NFC_Y = 29;
+NFC_Z = .2;
+
+PIN_X = 4.9; // 5
+PIN_Y = 1.9; // 2
 PIN_Z = 1.5;
+PIN_SHIFT = 10;
+// TODO shift the pin

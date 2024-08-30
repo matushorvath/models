@@ -2,17 +2,18 @@ include <common.scad>
 use <MCAD/boxes.scad>
 
 difference() {
-    difference() { // add % here to see the RFID
+    %difference() { // add % here to see inside
         // Body
-        minkowski() {
-            roundedCube([
-                HOLE_H + 2 * WALL - 2 * EDGE_RADIUS,
-                HOLE_W + 2 * WALL - 2 * EDGE_RADIUS,
-                DEPTH - 2 * EDGE_RADIUS
-            ], OUTSIDE_RADIUS, sidesonly=true, center=true);
+        translate([WALL_ADD_TOP / 2, 0, 0])
+            minkowski() {
+                roundedCube([
+                    HOLE_H + 2 * WALL + WALL_ADD_TOP - 2 * EDGE_RADIUS,
+                    HOLE_W + 2 * WALL - 2 * EDGE_RADIUS,
+                    DEPTH - 2 * EDGE_RADIUS
+                ], OUTSIDE_RADIUS, sidesonly=true, center=true);
 
-            sphere(r = EDGE_RADIUS);
-        }
+                sphere(r = EDGE_RADIUS);
+            }
 
         // Hole
         roundedCube([
@@ -22,28 +23,34 @@ difference() {
         ], INSIDE_RADIUS, sidesonly=true, center=true);
     }
 
-    rfid_translate_z = HOLE_H / 2 + (WALL - RFID_Z) / 2;
+    inside_z = HOLE_H / 2 + (WALL + WALL_ADD_TOP - RFID_Z - NFC_Z) / 2;
+    nfc_shift = (HOLE_W + 2 * WALL - 2 * OUTSIDE_RADIUS - 2 * INSIDE_RADIUS) / 2 - NFC_X / 2;
 
     rotate([90, 0, 90])
         union() {
             // RFID antena
-            translate([RFID_CHIP_X / 2, 0, rfid_translate_z])
+            translate([-RFID_CHIP_X / 2, 0, inside_z + RFID_Z / 2])
                 difference() {
                     // Antena space
                     cylinder(h = RFID_Z, r = RFID_OUTSIDE_R, center=true);
+
                     // Antena middle
                     cylinder(h = RFID_Z + DELTA, r = RFID_INSIDE_R, center=true);
                 }
 
             // RFID chip
-            translate([-RFID_OUTSIDE_R, 0, rfid_translate_z])
-                cube(size = [RFID_CHIP_X, RFID_CHIP_Y, RFID_Z], center=true);
+            translate([RFID_OUTSIDE_R - RFID_CHIP_OVERLAP / 2, 0, inside_z + RFID_Z / 2])
+                cube(size = [RFID_CHIP_X + RFID_CHIP_OVERLAP, RFID_CHIP_Y, RFID_Z], center=true);
+
+            // NFC sticker
+            translate([nfc_shift, 0, inside_z - NFC_Z / 2])
+                cube([NFC_X, NFC_Y, NFC_Z], center=true);
         }
 }
 
 // Pin
 rotate([0, 90, 0])
-    translate([0, 0, HOLE_H / 2 - PIN_Z / 2 + DELTA])
+    translate([PIN_SHIFT, 0, HOLE_H / 2 - PIN_Z / 2 + DELTA])
         union() {
             cube([PIN_Y, PIN_X, PIN_Z], center=true);
 
