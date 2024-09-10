@@ -2,7 +2,7 @@ include <common.scad>
 use <MCAD/boxes.scad>
 
 difference() {
-    %difference() { // add % here to see inside
+    difference() { // add % here to see inside
         // Body
         translate([WALL_ADD_TOP / 2, 0, 0])
             minkowski() {
@@ -35,7 +35,7 @@ difference() {
                     cylinder(h = RFID_Z, r = RFID_OUTSIDE_R, center=true);
 
                     // Antena middle
-                    cylinder(h = RFID_Z + DELTA, r = RFID_INSIDE_R, center=true);
+                    //cylinder(h = RFID_Z + DELTA, r = RFID_INSIDE_R, center=true);
                 }
 
             // RFID chip

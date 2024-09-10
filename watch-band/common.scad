@@ -25,7 +25,7 @@ RFID_CHIP_OVERLAP = 1;
 
 NFC_X = 12;
 NFC_Y = 29;
-NFC_Z = .2;
+NFC_Z = .3;
 
 PIN_X = 4.9; // 5
 PIN_Y = 1.9; // 2
