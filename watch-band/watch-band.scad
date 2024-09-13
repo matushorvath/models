@@ -65,3 +65,15 @@ difference() {
                 }
     }
 }
+
+// Icon
+translate([
+    HOLE_H / 2 + WALL + WALL_ADD_TOP - DELTA,
+    //HOLE_W / 2 + WALL - OUTSIDE_RADIUS - ICON_X / 2,
+    -RFID_CHIP_X / 2,
+    0
+])
+    rotate([90, 0, 90])
+        resize([ICON_X, ICON_Y, ICON_Z])
+            //surface(file="wifi-inverted.png", center=true);
+            surface(file="security-inverted.png", center=true);

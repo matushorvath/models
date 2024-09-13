@@ -29,3 +29,7 @@ NFC_COVER_Z = .7;
 
 CHIP_CAVE_EXTRA_Z = .7; // extra depth for chips (added to NFC and RFID depth)
 CHIP_CAVE_STRAIGHTEN_Z = 5; // extra depth on the side of the cave that gets cut off; to remove rounded corners deep inside the cave
+
+ICON_X = 10;
+ICON_Y = 10;
+ICON_Z = .4;
