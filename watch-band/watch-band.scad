@@ -51,7 +51,7 @@ difference() {
 // Icon
 translate([    // add * here to speed up preview
     HOLE_X / 2 + WALL_TOP - DELTA,
-    ICON_OFFSET_Y,
+    0,
     0
 ])
     rotate([90, 0, 90])

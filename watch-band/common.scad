@@ -25,7 +25,6 @@ CHIP_CAVE_CUTOFF_X = .8;
 
 CAVE_BORDER = 2; // border around the chip cave
 
-ICON_X = 10;
-ICON_Y = 10;
+ICON_X = 15;
+ICON_Y = 15;
 ICON_Z = .4;
-ICON_OFFSET_Y = -2.5;
