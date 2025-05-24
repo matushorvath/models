@@ -33,7 +33,7 @@ union() {
     translate(v = [0, 0, INSIDE_HEIGHT / 2])
         cylinder(h = INSIDE_HEIGHT, r = BIG_R, center = true);
 
-    #translate(v = [0, 0, INSIDE_HEIGHT + LID_HEIGHT / 2 - DELTA])
+    translate(v = [0, 0, INSIDE_HEIGHT + LID_HEIGHT / 2 - DELTA])
         cylinder(h = LID_HEIGHT, r = SMALL_R, center = true);
 
     handle_length_big = SMALL_R * HANDLE_LENGTH_BIG_FACTOR;
@@ -42,7 +42,7 @@ union() {
     handle_width_big = SMALL_R * HANDLE_WIDTH_BIG_FACTOR;
     handle_width_small = SMALL_R * HANDLE_WIDTH_SMALL_FACTOR;
 
-    translate(v = [0, 0, INSIDE_HEIGHT + LID_HEIGHT - DELTA])
+    translate(v = [0, 0, INSIDE_HEIGHT + LID_HEIGHT - 2 * DELTA])
         handle(
             handle_length_big, handle_length_small,
             handle_width_big, handle_width_small,

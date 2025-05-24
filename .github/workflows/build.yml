@@ -15,8 +15,8 @@ jobs:
     strategy:
       matrix:
         directory: [
-          'basket-cover', 'basket-cover-2', 'computer-foot', 'excel-box',
-          'gillette', 'tray-holder', 'wallet', wc-frame
+          basket-cover, basket-cover-2, box-lid, computer-foot, excel-box,
+          gillette, tray-holder, wallet, watch-band, wc-frame
         ]
 
     steps:
