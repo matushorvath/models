@@ -3,7 +3,7 @@ base
 - rounded corners
 - width 2.5mm
 
-hole 
+hole
 - 35mm /45mm
 - 20mm top to top hole
 - 30mm top hole to bottom hole
