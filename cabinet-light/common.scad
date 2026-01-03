@@ -5,7 +5,7 @@ $fs = .4;
 
 BASE_X = 48.0;
 BASE_Y = 15.0;
-BASE_Z = 6.0;
+BASE_Z = 16.0; // 6 minimum + 10 so switch doesn't interfere with the door
 
 BASE_ROUND = 2.5;
 
