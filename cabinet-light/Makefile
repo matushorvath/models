@@ -2,8 +2,8 @@ include ../common/openscad.mk
 
 .SUFFIXES: .scad .stl
 
-TARGETS=glue_base.stl
-INCLUDES=common.scad pins.scad
+TARGETS=glue_base.stl pins.stl
+INCLUDES=common.scad
 
 %.stl: %.scad $(INCLUDES)
 	$(OPENSCAD) -o $@ $<
