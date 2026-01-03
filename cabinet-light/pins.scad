@@ -9,7 +9,7 @@ module pin() {
 module pin_hole() {
     pin_hole_z = BASE_Z - BASE_WALL_Z;
     translate([0, 0, -pin_hole_z / 2 + DELTA])
-        cyl(h = pin_hole_z, r = LPIN_R + TIGHT_FIT);
+        cyl(h = pin_hole_z, r = LPIN_R + PRESS_FIT);
 }
 
 module pin_holes() {
