@@ -2,19 +2,27 @@ include <common.scad>
 include <BOSL/shapes.scad>
 
 module pin() {
-    translate([0, 0, LPIN_Z/2])
-        cyl(h=LPIN_Z, r=LPIN_R, chamfer2=LPIN_R/2);
+    pin_z = BASE_Z - BASE_WALL_Z + LPIN_Z - LOOSE_FIT;
+    cyl(h = pin_z, r = LPIN_R, chamfer = LPIN_R / 2);
 }
 
-module pins() {
-    translate([-LPIN_DX/2, -LPIN_DY/2, 0])
-        pin();
-    translate([-LPIN_DX/2,  LPIN_DY/2, 0])
-        pin();
-    translate([ LPIN_DX/2, -LPIN_DY/2, 0])
-        pin();
-    translate([ LPIN_DX/2,  LPIN_DY/2, 0])
-        pin();
+module hole() {
+    translate([0, 0, BASE_Z / 2])
+        cyl(h = BASE_Z, r = LPIN_R + TIGHT_FIT);
 }
 
-pins();
+module holes() {
+    translate([-LPIN_DX / 2, -LPIN_DY / 2, 0])
+        hole();
+    translate([-LPIN_DX / 2,  LPIN_DY / 2, 0])
+        hole();
+    translate([ LPIN_DX / 2, -LPIN_DY / 2, 0])
+        hole();
+    translate([ LPIN_DX / 2,  LPIN_DY / 2, 0])
+        hole();
+}
+
+rotate(a = [0, 90, 90])
+    pin();
+
+//holes();
