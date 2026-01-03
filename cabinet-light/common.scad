@@ -3,8 +3,8 @@ include <../common/constants.scad>
 $fa = 1;
 $fs = .4;
 
-BASE_X = 48.5;
-BASE_Y = 15.2;
+BASE_X = 48.0;
+BASE_Y = 15.0;
 BASE_Z = 6.0;
 
 BASE_ROUND = 2.5;
