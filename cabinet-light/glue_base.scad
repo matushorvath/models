@@ -41,5 +41,3 @@ module glue_base() {
         //     pry_holes();
     }
 }
-
-glue_base();
