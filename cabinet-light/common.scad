@@ -17,7 +17,9 @@ PRY_HOLE_LEN = 5.5;
 PRY_HOLE_Z = 1.5;
 
 LPIN_R = 1.55;
+LPIN_R_FIT = 0.05;
 LPIN_Z = 3.5;
+LPIN_Z_FIT = 0.10;
 
 LPIN_DX = 43.7;
 LPIN_DY = 10.2;
