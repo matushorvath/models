@@ -24,3 +24,5 @@ module pin_holes() {
 }
 
 //pin_holes();
+rotate(a = [0, 90, 90])
+    pin();
