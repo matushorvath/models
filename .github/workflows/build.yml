@@ -15,8 +15,8 @@ jobs:
     strategy:
       matrix:
         directory: [
-          basket-cover, basket-cover-2, box-lid, computer-foot, excel-box,
-          gillette, tray-holder, wallet, watch-band, wc-frame
+          basket-cover, basket-cover-2, box-lid, cabinet-light, computer-foot,
+          excel-box, gillette, tray-holder, wallet, watch-band, wc-frame
         ]
 
     steps:
@@ -25,6 +25,12 @@ jobs:
 
       - name: Install OpenSCAD
         run: sudo apt install openscad
+
+      - name: Install BOSL
+        run: |
+          wget --output-document /tmp/bosl.tar.gz https://github.com/revarbat/BOSL/archive/refs/tags/v1.0.3.tar.gz
+          mkdir -p $HOME/.local/share/OpenSCAD/libraries/BOSL
+          tar -xzf /tmp/bosl.tar.gz --directory=$HOME/.local/share/OpenSCAD/libraries/BOSL --strip-components=1
 
       - name: Build sources
         run: |
