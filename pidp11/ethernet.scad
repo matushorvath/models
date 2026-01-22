@@ -1,28 +1,16 @@
 include <common.scad>
 include <BOSL/shapes.scad>
 
-module pin() {
-    pin_z = BASE_Z - BASE_WALL_Z + LPIN_Z - LPIN_Z_FIT;
-    cyl(h = pin_z, r = LPIN_R, chamfer = LPIN_R / 2);
-}
+use <plate.scad>
 
-module pin_hole() {
-    pin_hole_z = BASE_Z - BASE_WALL_Z;
-    translate([0, 0, -pin_hole_z / 2 + DELTA])
-        cyl(h = pin_hole_z, r = LPIN_R + LPIN_R_FIT);
-}
+ETH_X = 33.5;
+ETH_Y = 20.5;
+ETH_Z = 1.5;
 
-module pin_holes() {
-    translate([-LPIN_DX / 2, -LPIN_DY / 2, 0])
-        pin_hole();
-    translate([-LPIN_DX / 2,  LPIN_DY / 2, 0])
-        pin_hole();
-    translate([ LPIN_DX / 2, -LPIN_DY / 2, 0])
-        pin_hole();
-    translate([ LPIN_DX / 2,  LPIN_DY / 2, 0])
-        pin_hole();
-}
+ETH_CONN_X = 16.5;
+ETH_CONN_Y = 13.5;
 
-//pin_holes();
-rotate(a = [0, 90, 90])
-    pin();
+ETH_SCREW_DIST = 25;
+ETH_SCREW_D = 4;
+
+plate(ETH_X, ETH_Y, ETH_Z, ETH_CONN_X, ETH_CONN_Y, ETH_SCREW_DIST, ETH_SCREW_D);
