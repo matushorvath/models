@@ -16,4 +16,25 @@ module shell(height) {
     }
 }
 
-shell(TOTAL_HEIGHT);
+module board_holder() {
+    difference() {
+        // The holder is carved out of this box
+        cuboid([BOARD_X + 2 * BOARD_CORNER_WALL, BOARD_Y + 2 * BOARD_CORNER_WALL, BOARD_Z + BOARD_CORNER_WALL]);
+
+        // Inside cutout
+        down(BOARD_CORNER_WALL / 2)
+            cuboid([BOARD_X, BOARD_Y, BOARD_Z + DELTA]);
+        // Inside roof cutout, everywhere except the front two corners
+        left((BOARD_CORNER_LENGTH - BOARD_CORNER_WALL) / 2)
+            cuboid([BOARD_X + BOARD_CORNER_WALL - BOARD_CORNER_LENGTH, BOARD_Y, BOARD_Z + BOARD_CORNER_WALL + DELTA]);
+        // Long side cutout
+        cuboid([BOARD_X + 2 * BOARD_CORNER_WALL - 2 * BOARD_CORNER_LENGTH, BOARD_Y + 2 * BOARD_CORNER_WALL + 2 * DELTA, BOARD_Z + BOARD_CORNER_WALL + DELTA]);
+        // Short side cutout
+        cuboid([BOARD_X + 2 * BOARD_CORNER_WALL + 2 * DELTA, BOARD_Y + 2 * BOARD_CORNER_WALL - 2 * BOARD_CORNER_LENGTH, BOARD_Z + BOARD_CORNER_WALL + DELTA]);
+    }
+
+}
+
+//shell(TOTAL_HEIGHT);
+
+board_holder();
