@@ -33,6 +33,13 @@ module board_holder() {
         cuboid([BOARD_X + 2 * BOARD_CORNER_WALL + 2 * DELTA, BOARD_Y + 2 * BOARD_CORNER_WALL - 2 * BOARD_CORNER_LENGTH, BOARD_Z + BOARD_CORNER_WALL + DELTA]);
     }
 
+    yflip_copy()
+        move([BOARD_X / 2 - PIN_X, BOARD_Y / 2 - PIN_Y, 0])
+            cylinder(h = BOARD_Z, d = PIN_D);
+
+    PIN_X = 27.5;
+PIN_Y = 7.5;
+PIN_D = 2;
 }
 
 //shell(TOTAL_HEIGHT);
