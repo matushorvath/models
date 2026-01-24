@@ -6,12 +6,12 @@ module shell(height) {
     bottom_outer_d = TOP_OUTER_D + (ORIG_BOTTOM_OUTER_D - TOP_OUTER_D) * height / ORIG_TOTAL_HEIGHT;
 
     difference() {
-        cyl(h = height, d1 = bottom_outer_d, d2 = TOP_OUTER_D);
-        up(SHELL_WALL / 2) {
+        cyl(h = height, d1 = bottom_outer_d, d2 = TOP_OUTER_D, align = V_UP);
+        up(SHELL_WALL) {
             // Leave just the walls
-            cyl(h = height - SHELL_WALL + DELTA, d1 = bottom_outer_d - 2 * SHELL_WALL, d2 = TOP_OUTER_D - 2 * SHELL_WALL);
+            cyl(h = height - SHELL_WALL + DELTA, d1 = bottom_outer_d - 2 * SHELL_WALL, d2 = TOP_OUTER_D - 2 * SHELL_WALL, align = V_UP);
             // Connector for the transparent top part
-            cyl(h = height - SHELL_WALL + DELTA, d = TOP_INNER_D);
+            cyl(h = height - SHELL_WALL + DELTA, d = TOP_INNER_D, align = V_UP);
         }
     }
 }
@@ -60,8 +60,10 @@ module board_holder() {
     yflip_copy()
         move([PIN_X, BOARD_Y / 2 - PIN_Y, 0])
             cylinder(h = BOARD_Z, d = PIN_D);
+
+    // TODO connector - plate between the roofed corners + connector hole + correct depth for the hole/plate
 }
 
-//shell(TOTAL_HEIGHT);
+shell(TOTAL_HEIGHT);
 
 board_holder();
