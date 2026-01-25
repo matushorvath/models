@@ -1,28 +1,16 @@
 include <common.scad>
 include <BOSL/shapes.scad>
 
-module pin() {
-    pin_z = BASE_Z - BASE_WALL_Z + LPIN_Z - LPIN_Z_FIT;
-    cyl(h = pin_z, r = LPIN_R, chamfer = LPIN_R / 2);
-}
+use <plate.scad>
 
-module pin_hole() {
-    pin_hole_z = BASE_Z - BASE_WALL_Z;
-    translate([0, 0, -pin_hole_z / 2 + DELTA])
-        cyl(h = pin_hole_z, r = LPIN_R + LPIN_R_FIT);
-}
+HDMI_X = 37;
+HDMI_Y = 10.5;
+HDMI_Z = 2.5;
 
-module pin_holes() {
-    translate([-LPIN_DX / 2, -LPIN_DY / 2, 0])
-        pin_hole();
-    translate([-LPIN_DX / 2,  LPIN_DY / 2, 0])
-        pin_hole();
-    translate([ LPIN_DX / 2, -LPIN_DY / 2, 0])
-        pin_hole();
-    translate([ LPIN_DX / 2,  LPIN_DY / 2, 0])
-        pin_hole();
-}
+HDMI_CONN_X = 17.5;
+HDMI_CONN_Y = 8;
 
-//pin_holes();
-rotate(a = [0, 90, 90])
-    pin();
+HDMI_SCREW_DIST = 26.5;
+HDMI_SCREW_D = 4;
+
+plate(HDMI_X, HDMI_Y, HDMI_Z, HDMI_CONN_X, HDMI_CONN_Y, HDMI_SCREW_DIST, HDMI_SCREW_D);
