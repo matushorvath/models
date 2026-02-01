@@ -58,10 +58,10 @@ module retainers() {
                 cylinder(h = USB_BOARD_Z, d = PIN_D);
 }
 
-module port_plate() {
-    // Plate width = base plate width + port offset from board
-    usb_plate_z = USB_BOARD_BASE_WALL + USB_PORT_OFFSET_Z + USB_PORT_Z + USB_PLATE_MARGIN_Z;
+// Plate width = base plate width + port offset from board
+usb_plate_z = USB_BOARD_BASE_WALL + USB_PORT_OFFSET_Z + USB_PORT_Z + USB_PLATE_MARGIN_Z;
 
+module port_plate() {
     // // Up by half height + measured offset of the USB port from board bottom
     // up(USB_BOARD_BASE_WALL + USB_PORT_OFFSET_Y + USB_PORT_Y / 2)
     //     zrot(90) xrot(-90)
@@ -87,10 +87,13 @@ module port_plate() {
 module port_mask() {
     // Reserve space beyond the plate, for the connector and cable
     cuboid([
-            USB_PORT_X + 2 * USB_PORT_MARGIN_X,
-            USB_PORT_Y + 2 * USB_PORT_MARGIN_Y,
-            USB_MASK_Z
-        ], align = V_UP);
+        USB_MASK_X,
+        // Don't worry about 2 * USB_BOARD_CORNER_WALL, it complicates sinking the board holder into the shell base
+        // This mask should be smaller anyway, just enough for the connector to fit
+        // Then the board could probably move closer to the edge of the shell (by USB_PLATE_X)
+        USB_BOARD_Y,
+        usb_plate_z
+    ], align = V_UP + V_LEFT);
 }
 
 usb_holder();
