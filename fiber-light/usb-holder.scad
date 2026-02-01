@@ -3,14 +3,10 @@ include <BOSL/shapes.scad>
 include <BOSL/transforms.scad>
 
 module usb_holder() {
-    retainers();
+    port_plate();
 
-    // Up by half height + measured offset of the USB port from board bottom
-    up(USB_PORT_OFFSET_Y + USB_PORT_Y / 2)
-        zrot(90) xrot(-90)
-            port_plate();
-
-    base_plate();
+    right(USB_PLATE_X - USB_BOARD_CORNER_WALL + DELTA)
+        retainers();
 }
 
 module retainers() {
@@ -22,6 +18,7 @@ module retainers() {
             USB_BOARD_BASE_WALL + USB_BOARD_Z + USB_BOARD_CORNER_WALL
         ], align = V_UP + V_RIGHT);
 
+        // Cutout moved up by base plate thickness
         up(USB_BOARD_BASE_WALL - DELTA) {
             // Inside cutout
             right(USB_BOARD_CORNER_WALL) {
@@ -54,29 +51,36 @@ module retainers() {
         }
     }
 
-    // Pins
-    yflip_copy()
-        move([PIN_X, USB_BOARD_Y / 2 - PIN_Y, 0])
-            cylinder(h = USB_BOARD_Z, d = PIN_D);
+    // Pins moved up by base plate thickness
+    up(USB_BOARD_BASE_WALL - DELTA)
+        yflip_copy()
+            move([PIN_X, USB_BOARD_Y / 2 - PIN_Y, 0])
+                cylinder(h = USB_BOARD_Z, d = PIN_D);
 }
 
 module port_plate() {
+    // Plate width = base plate width + port offset from board
+    usb_plate_z = USB_BOARD_BASE_WALL + USB_PORT_OFFSET_Z + USB_PORT_Z + USB_PLATE_MARGIN_Z;
+
+    // // Up by half height + measured offset of the USB port from board bottom
+    // up(USB_BOARD_BASE_WALL + USB_PORT_OFFSET_Y + USB_PORT_Y / 2)
+    //     zrot(90) xrot(-90)
+
     difference() {
         // Plate body
         cuboid([
-            USB_PORT_X + 2 * USB_PORT_MARGIN_X,
-            USB_PORT_Y + 2 * USB_PORT_MARGIN_Y,
-            USB_PLATE_Z
-        ], align = V_UP);
+            USB_PLATE_X,
+            USB_BOARD_Y + 2 * USB_BOARD_CORNER_WALL,
+            usb_plate_z
+        ], align = V_UP + V_RIGHT);
 
         // Port opening
-        down(DELTA)
-            cuboid(
-                [USB_PORT_X, USB_PORT_Y, USB_PLATE_Z + 2 * DELTA],
-                edges = EDGES_Z_ALL,
-                fillet = USB_PORT_Y / 2,
-                align = V_UP
-            );
+        up(USB_BOARD_BASE_WALL + USB_PORT_OFFSET_Z) left(DELTA)
+            cuboid([
+                USB_PLATE_X + 2 * DELTA,
+                USB_PORT_Y,
+                USB_PORT_Z
+            ], edges = EDGES_X_ALL, fillet = USB_PORT_Z / 2, align = V_UP + V_RIGHT);
     }
 }
 
@@ -88,7 +92,5 @@ module port_mask() {
             USB_MASK_Z
         ], align = V_UP);
 }
-
-// TODO connector - plate between the roofed corners + connector hole + correct depth for the hole/plate
 
 usb_holder();

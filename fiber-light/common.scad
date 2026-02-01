@@ -25,15 +25,15 @@ USB_BOARD_X = 30;
 USB_BOARD_Y = 20.5;
 USB_BOARD_Z = 2;
 
-USB_PORT_X = 9;
-USB_PORT_Y = 3;
-USB_PORT_OFFSET_Y = 1.5;
+USB_PORT_Y = 9;
+USB_PORT_Z = 3;
+USB_PORT_OFFSET_Z = 1.5; // actual width of the board
 
 PIN_X = 27.5;
 PIN_Y = 7.5;
 PIN_D = 2;
 
-// New parameters
+// Additional parameters
 SHELL_WALL = 2;
 TOTAL_HEIGHT = 30;
 
@@ -41,7 +41,6 @@ USB_BOARD_CORNER_WALL = 1;
 USB_BOARD_CORNER_LENGTH = 3;
 USB_BOARD_BASE_WALL = 1;
 
-USB_PORT_MARGIN_X = 2;
-USB_PORT_MARGIN_Y = 2;
-USB_PLATE_Z = 2;
-USB_MASK_Z = 50;
+USB_PLATE_MARGIN_Z = 2;
+USB_PLATE_X = 2;
+USB_MASK_X = 50;
