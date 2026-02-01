@@ -54,8 +54,12 @@ module retainers() {
     // Pins moved up by base plate thickness
     up(USB_BOARD_BASE_WALL - DELTA)
         yflip_copy()
-            move([PIN_X, USB_BOARD_Y / 2 - PIN_Y, 0])
-                cylinder(h = USB_BOARD_Z, d = PIN_D);
+            move([
+                USB_BOARD_CORNER_WALL + USB_BOARD_X - PIN_X,
+                USB_BOARD_Y / 2 - PIN_Y,
+                0
+            ])
+                cylinder(h = PIN_Z, d = PIN_D);
 }
 
 // Plate width = base plate width + port offset from board

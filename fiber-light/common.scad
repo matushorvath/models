@@ -21,15 +21,16 @@ RELAY_Y = 41;
 // RELAY_BOARD_Y = 40;
 // RELAY_BOARD_Z = 20;
 
-USB_BOARD_X = 30;
+USB_BOARD_X = 30.5;
 USB_BOARD_Y = 20.5;
 USB_BOARD_Z = 2;
 
-USB_PORT_Y = 9;
-USB_PORT_Z = 3;
-USB_PORT_OFFSET_Z = 1.5; // actual width of the board
+USB_PORT_MARGIN = 1;
+USB_PORT_Y = 9 + USB_PORT_MARGIN;
+USB_PORT_Z = 3 + USB_PORT_MARGIN;
+USB_PORT_OFFSET_Z = 1.5 - USB_PORT_MARGIN / 2; // actual width of the board - half of the added Z margin
 
-PIN_X = 27.5;
+PIN_X = 2;
 PIN_Y = 7.5;
 PIN_D = 2;
 
@@ -42,5 +43,7 @@ USB_BOARD_CORNER_LENGTH = 3;
 USB_BOARD_BASE_WALL = 1;
 
 USB_PLATE_MARGIN_Z = 2;
-USB_PLATE_X = 2;
+USB_PLATE_X = 1.5;
 USB_MASK_X = 50;
+
+PIN_Z = 3; // should be at least USB_BOARD_Z
