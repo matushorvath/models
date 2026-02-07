@@ -38,6 +38,13 @@ PIN_X = 2;
 PIN_Y = 7.5;
 PIN_D = 2;
 
+// Lightbulb
+BULB_IN_D = 9.6;
+BULB_OUT_D = 16.6;
+BULB_HOLDER_D = 25;
+BULB_SMALL_Z = 3;
+BULB_BIG_Z = 2;
+
 // Additional parameters
 SHELL_WALL = 2;
 TOTAL_HEIGHT = 30;
@@ -47,9 +54,9 @@ USB_BOARD_CORNER_LENGTH = 3;
 USB_BOARD_BASE_WALL = 1;
 
 USB_BOARD_LATCH_EXTRA_X = 0.5; // make the X wall near the latch a big sturdier
-USB_BOARD_LATCH_LENGTH_X = 1;
+USB_BOARD_LATCH_LENGTH_X = 1.2;
 USB_BOARD_LATCH_LENGTH_Y = 6;
-USB_BOARD_LATCH_LENGTH_Z = 0.5;
+USB_BOARD_LATCH_LENGTH_Z = 0.6;
 USB_BOARD_LATCH_EXTRA_Z = 0.3; // move the latch up to give the board a little slack
 
 USB_PLATE_MARGIN_Z = 2;
@@ -57,3 +64,7 @@ USB_PLATE_X = 1.5;
 USB_MASK_X = 50;
 
 PIN_Z = 3; // should be at least USB_BOARD_Z
+
+BULB_FRICTION_D = 0.3;
+BULB_FRICTION_MARGIN_Z = .3;
+BULB_FRICTION_RAMP_Z = .5;
