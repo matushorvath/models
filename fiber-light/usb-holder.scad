@@ -13,7 +13,7 @@ module retainers() {
     difference() {
         // The holder is carved out of this box
         cuboid([
-            USB_BOARD_X + 2 * USB_BOARD_CORNER_WALL,
+            USB_BOARD_X + 2 * USB_BOARD_CORNER_WALL + USB_BOARD_LATCH_EXTRA_X,
             USB_BOARD_Y + 2 * USB_BOARD_CORNER_WALL,
             USB_BOARD_BASE_WALL + USB_BOARD_Z + USB_BOARD_CORNER_WALL
         ], align = V_UP + V_RIGHT);
@@ -21,17 +21,16 @@ module retainers() {
         // Cutout moved up by base plate thickness
         up(USB_BOARD_BASE_WALL - DELTA) {
             // Inside cutout
-            right(USB_BOARD_CORNER_WALL) {
+            right(USB_BOARD_CORNER_WALL)
                 cuboid([USB_BOARD_X, USB_BOARD_Y, USB_BOARD_Z], align = V_UP + V_RIGHT);
 
             // Inside roof cutout, everywhere except the front two corners
             right(USB_BOARD_CORNER_LENGTH)
                 cuboid([
-                    USB_BOARD_X - USB_BOARD_CORNER_LENGTH,
+                    USB_BOARD_X + USB_BOARD_CORNER_WALL - USB_BOARD_CORNER_LENGTH,
                     USB_BOARD_Y,
                     USB_BOARD_Z + USB_BOARD_CORNER_WALL + 2 * DELTA
                 ], align = V_UP + V_RIGHT);
-            }
 
             // Long side cutout
             right(USB_BOARD_CORNER_LENGTH)
@@ -44,32 +43,29 @@ module retainers() {
             // Short side cutout
             left(DELTA)
                 cuboid([
-                    USB_BOARD_X + 2 * USB_BOARD_CORNER_WALL + 2 * DELTA,
+                    USB_BOARD_X + USB_BOARD_CORNER_WALL + DELTA,
                     USB_BOARD_Y + 2 * USB_BOARD_CORNER_WALL - 2 * USB_BOARD_CORNER_LENGTH,
                     USB_BOARD_Z + USB_BOARD_CORNER_WALL + 2 * DELTA
                 ], align = V_UP + V_RIGHT);
         }
     }
 
-    // Pins moved up by base plate thickness
-    up(USB_BOARD_BASE_WALL - DELTA)
-        yflip_copy()
-            move([
-                USB_BOARD_CORNER_WALL + USB_BOARD_X - PIN_X,
-                USB_BOARD_Y / 2 - PIN_Y,
-                0
-            ])
-                cylinder(h = PIN_Z, d = PIN_D);
+    // Latch
+    up(USB_BOARD_BASE_WALL + USB_BOARD_Z + USB_BOARD_LATCH_EXTRA_Z)
+        right(USB_BOARD_X + USB_BOARD_CORNER_WALL + DELTA)
+            prismoid(
+                size1 = [USB_BOARD_LATCH_LENGTH_X, USB_BOARD_LATCH_LENGTH_Y],
+                size2 = [0, USB_BOARD_LATCH_LENGTH_Y],
+                shift = [USB_BOARD_LATCH_LENGTH_X / 2, 0],
+                h = USB_BOARD_LATCH_LENGTH_Z,
+                align = V_UP + V_LEFT
+            );
 }
 
 // Plate width = base plate width + port offset from board
 usb_plate_z = USB_BOARD_BASE_WALL + USB_PORT_OFFSET_Z + USB_PORT_Z + USB_PLATE_MARGIN_Z;
 
 module port_plate() {
-    // // Up by half height + measured offset of the USB port from board bottom
-    // up(USB_BOARD_BASE_WALL + USB_PORT_OFFSET_Y + USB_PORT_Y / 2)
-    //     zrot(90) xrot(-90)
-
     difference() {
         // Plate body
         cuboid([
