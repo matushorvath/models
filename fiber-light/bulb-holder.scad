@@ -28,7 +28,7 @@ zring(n = 4, r = BULB_IN_D / 2 - BULB_FRICTION_D / 4)
             hramp = BULB_FRICTION_RAMP_Z,
             hbody = BULB_BIG_Z + BULB_SMALL_Z - 2 * BULB_FRICTION_MARGIN_Z - 2 * BULB_FRICTION_RAMP_Z,
             d = BULB_FRICTION_D,
-            align = V_UP, $fs = .01);
+            $fs = .01);
 
 // Outer hole friction elements
 zring(n = 6, r = BULB_OUT_D / 2 + BULB_FRICTION_D / 4)
@@ -37,4 +37,4 @@ zring(n = 6, r = BULB_OUT_D / 2 + BULB_FRICTION_D / 4)
             hramp = BULB_FRICTION_RAMP_Z,
             hbody = BULB_BIG_Z + BULB_SMALL_Z - 2 * BULB_FRICTION_MARGIN_Z - 2 * BULB_FRICTION_RAMP_Z,
             d = BULB_FRICTION_D,
-            align = V_UP, $fs = .01);
+            $fs = .01);

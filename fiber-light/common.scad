@@ -39,7 +39,7 @@ PIN_Y = 7.5;
 PIN_D = 2;
 
 // Lightbulb
-BULB_IN_D = 9.6;
+BULB_IN_D = 10.2;
 BULB_OUT_D = 16.6;
 BULB_HOLDER_D = 25;
 BULB_SMALL_Z = 3;
