@@ -89,8 +89,6 @@ module port_mask() {
     cuboid([
         USB_MASK_X,
         // Don't worry about 2 * USB_BOARD_CORNER_WALL, it complicates sinking the board holder into the shell base
-        // This mask should be smaller anyway, just enough for the connector to fit
-        // Then the board could probably move closer to the edge of the shell (by USB_PLATE_X)
         USB_BOARD_Y,
         usb_plate_z
     ], align = V_UP + V_LEFT);

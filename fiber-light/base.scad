@@ -51,6 +51,4 @@ difference() {
 // }
 
 // TODO the USB connector cutoff needs walls
-// TODO also it should be moved left a bit more, except then the corner likely pokes out of shell
 // TODO basically make a walled cutoff shape as a hollow cuboid, intersect that cuboid with full a shell-shaped mask, intersect the final shape with the masked hollow cuboid
-// TODO consider a hole on bottom for the on/off switch on the relay module
