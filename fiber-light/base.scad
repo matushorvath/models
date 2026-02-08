@@ -29,13 +29,9 @@ difference() {
 }
 
 // TODO simulate the zigbee switch
-#forward(12) up(SHELL_WALL) union() {
-    cuboid([RELAY_X, RELAY_Y, RELAY_Z], align = V_UP);
-}
-
-// TODO simulate the bulb holder
-up(TOTAL_HEIGHT - BULB_TOP_OFFSET_Z)
-    cyl(d = BULB_OUTER_D, h = 7, align = V_UP);
+// #forward(12) up(SHELL_WALL) union() {
+//     cuboid([RELAY_X, RELAY_Y, RELAY_Z], align = V_UP);
+// }
 
 // TODO the USB connector cutoff needs walls
 // TODO also it should be moved left a bit more, except then the corner likely pokes out of shell

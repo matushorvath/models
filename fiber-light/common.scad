@@ -13,18 +13,16 @@ ORIG_TOTAL_HEIGHT = 26;
 // Base height (from lower lip of original base to where the base ends when looking) = ~22
 // LED holder is ~13mm from the lower lip of original base
 
-BULB_TOP_OFFSET_Z = 9;
-BULB_OUTER_D = 13.5;
-BULB_INNER_D = 10;
+// Zigbee relay board
+RELAY_BOARD_X = 38;
+RELAY_BOARD_Y = 38;
+//RELAY_Z = 19;
+RELAY_BOARD_Z = 1;
 
-RELAY_X = 38;
-RELAY_Y = 38;
-RELAY_Z = 19;
+RELAY_RISER_Z = 3;
+RELAY_BUTTON_X = 14.5;
 
-// RELAY_BOARD_X = 40;
-// RELAY_BOARD_Y = 40;
-// RELAY_BOARD_Z = 20;
-
+// USB board
 USB_BOARD_X = 30.5;
 USB_BOARD_Y = 20.5;
 USB_BOARD_Z = 2;
@@ -33,10 +31,6 @@ USB_PORT_MARGIN = 1;
 USB_PORT_Y = 9 + USB_PORT_MARGIN;
 USB_PORT_Z = 3 + USB_PORT_MARGIN;
 USB_PORT_OFFSET_Z = 1.5 - USB_PORT_MARGIN / 2; // actual width of the board - half of the added Z margin
-
-PIN_X = 2;
-PIN_Y = 7.5;
-PIN_D = 2;
 
 // Lightbulb
 BULB_IN_D = 10.2;
@@ -68,3 +62,14 @@ PIN_Z = 3; // should be at least USB_BOARD_Z
 BULB_FRICTION_D = 0.3;
 BULB_FRICTION_MARGIN_Z = .3;
 BULB_FRICTION_RAMP_Z = .5;
+
+RELAY_RISER_CORNER = 3;
+RELAY_WALL = 1.5;
+
+RELAY_LATCH_OFFSET_X = 1;
+RELAY_LATCH_LENGTH_X = 2;
+RELAY_LATCH_LENGTH_Y = 1.2;
+RELAY_LATCH_LENGTH_Z = 0.6;
+RELAY_LATCH_EXTRA_Z = 0.3; // move the latch up to give the board a little slack
+
+RELAY_BUTTON_HOLE = 10;

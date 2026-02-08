@@ -97,3 +97,5 @@ module port_mask() {
 }
 
 usb_holder();
+
+// TODO maybe some hole for solder at the bottom?

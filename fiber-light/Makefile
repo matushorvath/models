@@ -2,7 +2,7 @@ include ../common/openscad.mk
 
 .SUFFIXES: .scad .stl
 
-TARGETS=base.stl bulb-holder.stl usb-holder.stl
+TARGETS=base.stl bulb-holder.stl usb-holder.stl zigbee-holder.stl
 INCLUDES=common.scad shell.scad usb-holder.scad
 
 %.stl: %.scad $(INCLUDES)
