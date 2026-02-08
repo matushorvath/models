@@ -16,9 +16,9 @@ ORIG_TOTAL_HEIGHT = 26;
 // Zigbee relay board
 RELAY_BOARD_X = 38;
 RELAY_BOARD_Y = 38;
-//RELAY_Z = 19;
 RELAY_BOARD_Z = 1;
 
+RELAY_HEIGHT_Z = 19; // for mocking the board
 RELAY_RISER_Z = 3;
 RELAY_BUTTON_X = 14.5;
 
@@ -65,11 +65,13 @@ BULB_FRICTION_RAMP_Z = .5;
 
 RELAY_RISER_CORNER = 3;
 RELAY_WALL = 1.5;
+RELAY_HOLDER_Z = RELAY_WALL + RELAY_RISER_Z + RELAY_BOARD_Z + 1;
 
-RELAY_LATCH_OFFSET_X = 1;
-RELAY_LATCH_LENGTH_X = 2;
-RELAY_LATCH_LENGTH_Y = 1.2;
-RELAY_LATCH_LENGTH_Z = 0.6;
-RELAY_LATCH_EXTRA_Z = 0.3; // move the latch up to give the board a little slack
+// RELAY_LATCH_OFFSET_X = 1;
+// RELAY_LATCH_LENGTH_X = 2;
+// RELAY_LATCH_LENGTH_Y = 1.2;
+// RELAY_LATCH_LENGTH_Z = 0.6;
+// RELAY_LATCH_EXTRA_Z = 0.3; // move the latch up to give the board a little slack
 
 RELAY_BUTTON_HOLE = 10;
+RELAY_BUTTON_MASK_Z = 50;
