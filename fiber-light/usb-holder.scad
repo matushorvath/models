@@ -13,7 +13,7 @@ module retainers() {
     difference() {
         // The holder is carved out of this box
         cuboid([
-            USB_BOARD_X + 2 * USB_BOARD_CORNER_WALL + USB_BOARD_LATCH_EXTRA_X,
+            USB_BOARD_X + 2 * USB_BOARD_CORNER_WALL,
             USB_BOARD_Y + 2 * USB_BOARD_CORNER_WALL,
             USB_BOARD_BASE_WALL + USB_BOARD_Z + USB_BOARD_CORNER_WALL
         ], align = V_UP + V_RIGHT);
@@ -24,8 +24,8 @@ module retainers() {
             right(USB_BOARD_CORNER_WALL)
                 cuboid([USB_BOARD_X, USB_BOARD_Y, USB_BOARD_Z], align = V_UP + V_RIGHT);
 
-            // Inside roof cutout, everywhere except the front two corners
-            right(USB_BOARD_CORNER_LENGTH)
+            // Inside roof cutout, everywhere except the right two corners
+            right(USB_BOARD_CORNER_WALL)
                 cuboid([
                     USB_BOARD_X + USB_BOARD_CORNER_WALL - USB_BOARD_CORNER_LENGTH,
                     USB_BOARD_Y,
@@ -56,20 +56,6 @@ module retainers() {
                     cuboid([USB_SOLDER_X, USB_SOLDER_Y, USB_SOLDER_Z + DELTA], align = V_UP + V_RIGHT);
         }
     }
-
-    // Latch
-    // TODO this isn't very adequate when disconnecting the cable, the board moves
-    // TODO perhaps move the roof to the side remote from the connector, and let the connector hole provide latching
-    // TODO (perhaps make it smaller, add a small latch on inside top of it)
-    up(USB_BOARD_BASE_WALL + USB_BOARD_Z + USB_BOARD_LATCH_EXTRA_Z)
-        right(USB_BOARD_X + USB_BOARD_CORNER_WALL + DELTA)
-            prismoid(
-                size1 = [USB_BOARD_LATCH_LENGTH_X, USB_BOARD_LATCH_LENGTH_Y],
-                size2 = [0, USB_BOARD_LATCH_LENGTH_Y],
-                shift = [USB_BOARD_LATCH_LENGTH_X / 2, 0],
-                h = USB_BOARD_LATCH_LENGTH_Z,
-                align = V_UP + V_LEFT
-            );
 }
 
 // Plate width = base plate width + port offset from board
@@ -100,6 +86,17 @@ module port_plate() {
         // Hole in front of the port opening
         port_mask();
     }
+
+    // Latch
+    up(USB_BOARD_BASE_WALL + USB_PORT_OFFSET_Z + USB_PORT_Z)
+        right(USB_PLATE_X - DELTA)
+            prismoid(
+                size1 = [USB_BOARD_LATCH_LENGTH_X, USB_BOARD_LATCH_LENGTH_Y],
+                size2 = [0, USB_BOARD_LATCH_LENGTH_Y],
+                shift = [-USB_BOARD_LATCH_LENGTH_X / 2, 0],
+                h = USB_BOARD_LATCH_LENGTH_Z,
+                align = V_UP + V_RIGHT
+            );
 }
 
 module port_mask_walls() {
@@ -123,4 +120,6 @@ module port_mask() {
         ], align = V_UP + V_LEFT);
 }
 
+// Uncomment to print a small part of the port walls
+right_half(x = -5)
 usb_holder();

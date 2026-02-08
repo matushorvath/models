@@ -27,7 +27,7 @@ USB_BOARD_X = 30.5;
 USB_BOARD_Y = 20.5;
 USB_BOARD_Z = 2;
 
-USB_PORT_MARGIN = 1;
+USB_PORT_MARGIN = .5;
 USB_PORT_Y = 9 + USB_PORT_MARGIN;
 USB_PORT_Z = 3 + USB_PORT_MARGIN;
 USB_PORT_OFFSET_Z = 1.5 - USB_PORT_MARGIN / 2; // actual width of the board - half of the added Z margin
@@ -48,11 +48,9 @@ USB_BOARD_CORNER_LENGTH = 3;
 USB_BOARD_BASE_WALL = 1;
 USB_BOARD_PORT_WALL = 1.5;
 
-USB_BOARD_LATCH_EXTRA_X = 0.5; // make the X wall near the latch a big sturdier
-USB_BOARD_LATCH_LENGTH_X = 1.2;
+USB_BOARD_LATCH_LENGTH_X = 0.8;
 USB_BOARD_LATCH_LENGTH_Y = 6;
 USB_BOARD_LATCH_LENGTH_Z = 0.6;
-USB_BOARD_LATCH_EXTRA_Z = 0.3; // move the latch up to give the board a little slack
 
 USB_PLATE_MARGIN_Z = 2;
 USB_PLATE_X = 1.5;

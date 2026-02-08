@@ -25,6 +25,8 @@ module move_relay_holder_to_position() {
                 children();
 }
 
+// Uncomment to print just the top interface
+//top_half(z = TOTAL_HEIGHT - 6)
 difference() {
     union() {
         shell(TOTAL_HEIGHT);
