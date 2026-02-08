@@ -16,4 +16,4 @@ module shell(height) {
     }
 }
 
-//shell(TOTAL_HEIGHT);
+shell(TOTAL_HEIGHT);

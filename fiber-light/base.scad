@@ -45,7 +45,7 @@ difference() {
         relay_button_mask();
 }
 
-// TODO simulate the relay
+// Simulate the relay
 // forward(12) up(SHELL_WALL + RELAY_RISER_Z) union() {
 //     cuboid([RELAY_BOARD_X, RELAY_BOARD_Y, RELAY_HEIGHT_Z], align = V_UP);
 // }
