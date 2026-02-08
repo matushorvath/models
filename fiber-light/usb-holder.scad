@@ -48,6 +48,13 @@ module retainers() {
                     USB_BOARD_Z + USB_BOARD_CORNER_WALL + 2 * DELTA
                 ], align = V_UP + V_RIGHT);
         }
+
+        // Space for solder
+        up(USB_BOARD_BASE_WALL - USB_SOLDER_Z) {
+            right(USB_BOARD_X + USB_BOARD_CORNER_WALL - USB_SOLDER_X)
+                yspread(USB_BOARD_Y - USB_SOLDER_Y)
+                    cuboid([USB_SOLDER_X, USB_SOLDER_Y, USB_SOLDER_Z + DELTA], align = V_UP + V_RIGHT);
+        }
     }
 
     // Latch
@@ -84,16 +91,25 @@ module port_plate() {
     }
 }
 
-module port_mask() {
-    // Reserve space beyond the plate, for the connector and cable
+module port_mask_walls() {
+    // Solid block beyond the plate, to be sculpted into walls around port_mask
+    down(USB_BOARD_PORT_WALL)
     cuboid([
         USB_MASK_X,
-        // Don't worry about 2 * USB_BOARD_CORNER_WALL, it complicates sinking the board holder into the shell base
-        USB_BOARD_Y,
-        usb_plate_z
+        USB_BOARD_Y + 2 * USB_BOARD_CORNER_WALL + 2 * USB_BOARD_PORT_WALL,
+        usb_plate_z + 2 * USB_BOARD_PORT_WALL,
     ], align = V_UP + V_LEFT);
 }
 
-usb_holder();
+module port_mask() {
+    // Reserve space beyond the plate, for the connector and cable
+    right(DELTA)
+        cuboid([
+            USB_MASK_X,
+            USB_BOARD_Y,
+            usb_plate_z
+        ], align = V_UP + V_LEFT);
+}
 
-// TODO maybe some hole for solder at the bottom?
+usb_holder();
+//#port_mask_walls();

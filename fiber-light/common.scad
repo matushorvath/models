@@ -46,6 +46,7 @@ TOTAL_HEIGHT = 30;
 USB_BOARD_CORNER_WALL = 1;
 USB_BOARD_CORNER_LENGTH = 3;
 USB_BOARD_BASE_WALL = 1;
+USB_BOARD_PORT_WALL = 1.5;
 
 USB_BOARD_LATCH_EXTRA_X = 0.5; // make the X wall near the latch a big sturdier
 USB_BOARD_LATCH_LENGTH_X = 1.2;
@@ -56,6 +57,10 @@ USB_BOARD_LATCH_EXTRA_Z = 0.3; // move the latch up to give the board a little s
 USB_PLATE_MARGIN_Z = 2;
 USB_PLATE_X = 1.5;
 USB_MASK_X = 50;
+
+USB_SOLDER_X = 5;
+USB_SOLDER_Y = 3;
+USB_SOLDER_Z = .5;
 
 PIN_Z = 3; // should be at least USB_BOARD_Z
 

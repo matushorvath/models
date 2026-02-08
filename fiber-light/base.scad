@@ -6,7 +6,7 @@ use <shell.scad>
 use <relay-holder.scad>
 use <usb-holder.scad>
 
-module moveUsbHolderToPosition() {
+module move_usb_holder_to_position() {
     // Move to the correct place within the shell
     back(30) left(17)
         // Sink the bottom corners into the shell floor, to save space
@@ -16,7 +16,7 @@ module moveUsbHolderToPosition() {
                 children();
 }
 
-module moveRelayHolderToPosition() {
+module move_relay_holder_to_position() {
     // Move to the correct place within the shell
     forward(12)
         // Sink the holder floor into the shell floor, to save space
@@ -25,30 +25,37 @@ module moveRelayHolderToPosition() {
                 children();
 }
 
+module usb_port_walls() {
+    intersection() {
+        shell_mask(TOTAL_HEIGHT);
+        move_usb_holder_to_position()
+            port_mask_walls();
+    }
+}
+
 difference() {
     union() {
         shell(TOTAL_HEIGHT);
 
-        moveUsbHolderToPosition()
+        move_usb_holder_to_position()
             usb_holder();
 
-        moveRelayHolderToPosition()
+        move_relay_holder_to_position()
             relay_holder();
+
+        usb_port_walls();
     }
 
     // Cut off space in front of the USB port, where the cable and connector go
-    moveUsbHolderToPosition()
+    move_usb_holder_to_position()
         port_mask();
 
     // Cut off access for the relay button
-    moveRelayHolderToPosition()
+    move_relay_holder_to_position()
         relay_button_mask();
 }
 
 // Simulate the relay
-// forward(12) up(SHELL_WALL + RELAY_RISER_Z) union() {
+// #forward(12) up(SHELL_WALL + RELAY_RISER_Z) union() {
 //     cuboid([RELAY_BOARD_X, RELAY_BOARD_Y, RELAY_HEIGHT_Z], align = V_UP);
 // }
-
-// TODO the USB connector cutoff needs walls
-// TODO basically make a walled cutoff shape as a hollow cuboid, intersect that cuboid with full a shell-shaped mask, intersect the final shape with the masked hollow cuboid
