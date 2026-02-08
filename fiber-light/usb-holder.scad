@@ -120,6 +120,6 @@ module port_mask() {
         ], align = V_UP + V_LEFT);
 }
 
-// Uncomment to print a small part of the port walls
-right_half(x = -5)
+// Uncomment to print just a small part of the port walls
+right_half(x = -5) top_half(z = DELTA)
 usb_holder();
