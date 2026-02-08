@@ -25,25 +25,19 @@ module move_relay_holder_to_position() {
                 children();
 }
 
-module usb_port_walls() {
-    intersection() {
-        shell_mask(TOTAL_HEIGHT);
-        move_usb_holder_to_position()
-            port_mask_walls();
-    }
-}
-
 difference() {
     union() {
         shell(TOTAL_HEIGHT);
 
-        move_usb_holder_to_position()
-            usb_holder();
+        // Intersect USB holder + the walls in front of the USB port with the shell
+        intersection() {
+            shell_mask(TOTAL_HEIGHT);
+            move_usb_holder_to_position()
+                usb_holder();
+        }
 
         move_relay_holder_to_position()
             relay_holder();
-
-        usb_port_walls();
     }
 
     // Cut off space in front of the USB port, where the cable and connector go
