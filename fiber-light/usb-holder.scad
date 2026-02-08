@@ -93,6 +93,7 @@ module port_plate() {
 
 module port_mask_walls() {
     // Solid block beyond the plate, to be sculpted into walls around port_mask
+    // TODO this doesn't correctly connect to port_plate, there is a gap
     down(USB_BOARD_PORT_WALL)
     cuboid([
         USB_MASK_X,
