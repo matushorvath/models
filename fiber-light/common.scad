@@ -48,6 +48,8 @@ USB_BOARD_CORNER_LENGTH = 3;
 USB_BOARD_BASE_WALL = 1;
 USB_BOARD_PORT_WALL = 1.5;
 
+// TODO remove the latch, or make it much smaller
+// TODO it catches the USB port when installing
 USB_BOARD_LATCH_LENGTH_X = 0.8;
 USB_BOARD_LATCH_LENGTH_Y = 6;
 USB_BOARD_LATCH_LENGTH_Z = 0.6;
