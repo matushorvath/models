@@ -7,12 +7,36 @@ include <BOSL2/std.scad>
 // TODO texture = "rough" for both body shapes?
 
 module body_xy() {
+    diff()
+
     linear_sweep(
         body_xy_plane(),
         center = true,
         height = 2 * max(YZ_BOTTOM_HALF),
         orient = UP
-    );
+    )
+
+    show_anchors()
+
+    {
+        // TODO notes
+        // edge 11 is cleared by XZ mask
+        // edge 1 should have different than 90 degree angle, but perhaps it works automatically, check
+        // side edges also get partially cleared, we probably need to apply this to the finalized body to make it look right
+        // keyboard/screen fillet does not work with the mask, probably needs to be handled explicitly or with masks with angled end caps
+        // make this optional since it's very slow
+        for (i = [1 : 11]) {
+            attach(str("top_edge", i), FRONT+LEFT, inside=true)
+                rounding_edge_mask(l = $edge_length, r = 10);
+            attach(str("bot_edge", i), FRONT+LEFT, inside=true)
+                rounding_edge_mask(l = $edge_length, r = 10);
+        }
+
+        attach("edge1", FRONT+LEFT, inside=true)
+            rounding_edge_mask(l = $edge_length, r = 10);
+        attach("edge12", FRONT+LEFT, inside=true)
+            rounding_edge_mask(l = $edge_length, r = 10);
+    }
 }
 
 module body_yz_half() {
@@ -55,5 +79,7 @@ module body() {
     };
 }
 
-// xrot(90) // orient the model for easy viewing in OpenSCAD
-//     body();
+xrot(90) // orient the model for easy viewing in OpenSCAD
+    body();
+//body_xy();
+//body_yz();
