@@ -16,9 +16,6 @@ function offset_corner(owall, fwd_a, top_a) =
         owall * (sin(fwd_a) - k * cos(fwd_a))
     ];
 
-// TODO this is wrong, BODY_Y is not the body height (it's completely something else)
-// TODO real height is closer to 285.065 based on tables
-// TODO instead use Sheet 30, Data List #2 where X >= 182
 function body_xy_plane(outside) =
     let(
         // If inside, leave a wall around, and add a DELTA where there is no wall
@@ -32,8 +29,8 @@ function body_xy_plane(outside) =
             [0 + ofwd_bot_x, 0 - oclear],                            // keyboard forward bottom
             [kbd_fwd_x + ofwd_top.x, KBD_FWD_Y - ofwd_top.y],        // keyboard forward top
             [kbd_back_x + owall, kbd_back_y - owall],                // keyboard back top
-            [SCR_TOP_X + owall, BODY_Y - owall],                     // body forward top
-            [BODY_BACK_X + oclear, BODY_Y - owall],                  // body back top
+            [SCR_TOP_X + owall, SCR_TOP_Y - owall],                  // body forward top
+            [BODY_BACK_X + oclear, SCR_TOP_Y - owall],               // body back top
             [BODY_BACK_X + oclear, 0 - oclear]                       // body back bottom
         ],
 
@@ -43,7 +40,8 @@ function body_xy_plane(outside) =
     )
     round_corners(shape, radius = radii);
 
-function body_yz_half_plane(outside, top_half_x, bottom_half_x, height_y, corner_r, side_curve) =
+// Value bottom_z would ideally be read from side_curve where Y=0, but YZ_CURVE_X* does not always have a value for Y=0
+function body_yz_half_plane(outside, bottom_z, side_curve) =
     let(
         // If inside, leave a wall around, and add a DELTA where there is no wall
         owall = outside ? 0 : BODY_WALL,
@@ -57,15 +55,15 @@ function body_yz_half_plane(outside, top_half_x, bottom_half_x, height_y, corner
 
         shape = [
             [0, 0 - oclear],                                        // center bottom
-            [0, height_y - owall],                                  // center top
-            [top_half_x - owall, height_y - owall],                 // side top
+            [0, SCR_TOP_Y - owall],                                 // center top
+            [side_curve[0][1] - owall, SCR_TOP_Y - owall],          // side top
             for (p = optimized_side_curve)
-                if (p.x <= BODY_Y - corner_r)
+                if (p.x <= SCR_TOP_Y - YZ_TOP_CORNER_R)
                     [p.y - owall, p.x],   // side top to side bottom curve; wall is approximate
-            [bottom_half_x - owall, 0 - oclear]
+            [bottom_z - owall, 0 - oclear]
         ],
         radii = [
-            0, 0, corner_r - owall,
+            0, 0, YZ_TOP_CORNER_R - owall,
             for (i = [4 : len(shape)]) 0
         ]
     )
@@ -74,13 +72,13 @@ function body_yz_half_plane(outside, top_half_x, bottom_half_x, height_y, corner
 // %polygon(body_xy_plane(true));
 // polygon(body_xy_plane(false));
 
-// %polygon(body_yz_half_plane(true, YZ_CURVE_X000[0].y, YZ_BOTTOM_HALF[0], BODY_Y, YZ_TOP_CORNER_R, YZ_CURVE_X000));
-// polygon(body_yz_half_plane(false, YZ_CURVE_X000[0].y, YZ_BOTTOM_HALF[0], BODY_Y, YZ_TOP_CORNER_R, YZ_CURVE_X000));
-// polygon(body_yz_half_plane(true, YZ_CURVE_X050[0].y, YZ_BOTTOM_HALF[1], BODY_Y, YZ_TOP_CORNER_R, YZ_CURVE_X050));
-// polygon(body_yz_half_plane(true, YZ_CURVE_X100[0].y, YZ_BOTTOM_HALF[2], BODY_Y, YZ_TOP_CORNER_R, YZ_CURVE_X100));
-// polygon(body_yz_half_plane(true, YZ_CURVE_X150[0].y, YZ_BOTTOM_HALF[3], BODY_Y, YZ_TOP_CORNER_R, YZ_CURVE_X150));
-// polygon(body_yz_half_plane(true, YZ_CURVE_X200[0].y, YZ_BOTTOM_HALF[4], BODY_Y, YZ_TOP_CORNER_R, YZ_CURVE_X200));
-// polygon(body_yz_half_plane(true, YZ_CURVE_X250[0].y, YZ_BOTTOM_HALF[5], BODY_Y, YZ_TOP_CORNER_R, YZ_CURVE_X250));
-// polygon(body_yz_half_plane(true, YZ_CURVE_X300[0].y, YZ_BOTTOM_HALF[6], BODY_Y, YZ_TOP_CORNER_R, YZ_CURVE_X300));
-// polygon(body_yz_half_plane(true, YZ_CURVE_X350[0].y, YZ_BOTTOM_HALF[7], BODY_Y, YZ_TOP_CORNER_R, YZ_CURVE_X350));
-// polygon(body_yz_half_plane(true, YZ_CURVE_X400[0].y, YZ_BOTTOM_HALF[8], BODY_Y, YZ_TOP_CORNER_R, YZ_CURVE_X400));
+// %polygon(body_yz_half_plane(true, XZ_CURVE_Y000[0], YZ_CURVE_X000));
+// polygon(body_yz_half_plane(false, XZ_CURVE_Y000[0], YZ_CURVE_X000));
+// polygon(body_yz_half_plane(true, XZ_CURVE_Y000[1], YZ_CURVE_X050));
+// polygon(body_yz_half_plane(true, XZ_CURVE_Y000[2], YZ_CURVE_X100));
+// polygon(body_yz_half_plane(true, XZ_CURVE_Y000[3], YZ_CURVE_X150));
+// polygon(body_yz_half_plane(true, XZ_CURVE_Y000[4], YZ_CURVE_X200));
+// polygon(body_yz_half_plane(true, XZ_CURVE_Y000[5], YZ_CURVE_X250));
+// polygon(body_yz_half_plane(true, XZ_CURVE_Y000[6], YZ_CURVE_X300));
+// polygon(body_yz_half_plane(true, XZ_CURVE_Y000[7], YZ_CURVE_X350));
+// polygon(body_yz_half_plane(true, XZ_CURVE_Y000[8], YZ_CURVE_X400));
