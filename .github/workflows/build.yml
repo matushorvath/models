@@ -24,7 +24,7 @@ jobs:
 
     steps:
       - name: Checkout sources
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
 
       - name: Install OpenSCAD
         run: sudo apt install openscad
@@ -59,7 +59,7 @@ jobs:
 
       - name: Push the assets branch
         if: github.ref == 'refs/heads/main'
-        uses: nick-fields/retry@v3
+        uses: nick-fields/retry@v4
         with:
           max_attempts: 10
           timeout_seconds: 20
