@@ -55,7 +55,7 @@ jobs:
           git fetch origin assets
           git checkout assets
           git add ${{ matrix.directory }}
-          git commit -m "Update renders for ${{ matrix.directory }}"
+          git commit -m "Update renders for ${{ matrix.directory }}" || true
 
       - name: Push the assets branch
         if: github.ref == 'refs/heads/main'
