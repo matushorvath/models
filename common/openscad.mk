@@ -7,3 +7,10 @@ else ifeq ($(shell uname -s),Darwin)
 else
 	OPENSCAD=openscad
 endif
+
+define run-openscad
+	$(OPENSCAD) $(OPENSCAD_FLAGS) -o $@ -d $@.deps $< ; \
+	EXIT_CODE=$$? ; \
+	sed -i -e 's/C:/\/mnt\/c/g' $@.deps ; \
+	exit $$EXIT_CODE
+endef
