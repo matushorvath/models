@@ -13,4 +13,4 @@ INCLUDES=common.scad connector.scad
 all: $(TARGETS)
 
 clean:
-	rm -f $(TARGETS:.scad=.stl)
+	rm -f $(TARGETS) *.deps

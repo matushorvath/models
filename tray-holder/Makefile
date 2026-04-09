@@ -13,4 +13,4 @@ INCLUDES=common.scad hippo.stl
 all: $(TARGETS)
 
 clean:
-	rm -f $(TARGETS:.scad=.stl)
+	rm -f $(TARGETS) *.deps
