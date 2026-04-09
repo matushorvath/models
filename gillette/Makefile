@@ -3,14 +3,22 @@ include ../common/openscad.mk
 .SUFFIXES: .scad .stl
 
 TARGETS=bottom.stl
-INCLUDES=common.scad
+PREVIEWS=$(TARGETS:.stl=.png)
 
-%.stl: %.scad $(INCLUDES)
-	$(OPENSCAD) -o $@ $<
+all: $(TARGETS)
+preview: $(PREVIEWS)
 
-.PHONY: all clean
+include $(wildcard *.deps)
+
+%.stl: %.scad
+	$(run-openscad)
+
+%.png: %.scad
+	$(run-openscad)
+
+.PHONY: all preview clean
 
 all: $(TARGETS)
 
 clean:
-	rm -f $(TARGETS) *.deps
+	rm -f $(TARGETS) $(PREVIEWS) *.deps

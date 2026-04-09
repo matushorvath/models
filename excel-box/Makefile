@@ -3,7 +3,7 @@ include ../common/openscad.mk
 .SUFFIXES: .scad .stl
 
 TARGETS=tools.stl
-PREVIEWS=tools.png
+PREVIEWS=$(TARGETS:.stl=.png)
 
 all: $(TARGETS)
 preview: $(PREVIEWS)
