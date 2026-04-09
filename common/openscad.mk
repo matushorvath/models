@@ -17,7 +17,7 @@ endef
 
 # Color schemes: Cornfield Starnight BeforeDawn DeepOcean Monotone
 %.png: OPENSCAD_FLAGS = --autocenter --viewall --projection=p \
-	--imgsize=2880,2160 --colorscheme=Monotone --render
+	--imgsize=2880,2160 --colorscheme=Monotone --render=true
 
 # Adjust flags for individual models like this:
 # %.png: OPENSCAD_FLAGS += --camera=0,0,150,100,50,100
