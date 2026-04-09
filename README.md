@@ -1,4 +1,4 @@
-![preview](https://raw.githubusercontent.com/USER/REPO/assets/renders/model.png)
+[![Build](https://github.com/matushorvath/models/actions/workflows/build.yml/badge.svg)](https://github.com/matushorvath/models/actions/workflows/build.yml)
 
 # OpenSCAD Models
 
