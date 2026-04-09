@@ -32,7 +32,25 @@ jobs:
           mkdir -p $HOME/.local/share/OpenSCAD/libraries/BOSL
           tar -xzf /tmp/bosl.tar.gz --directory=$HOME/.local/share/OpenSCAD/libraries/BOSL --strip-components=1
 
-      - name: Build sources
+      - name: Build the model
         run: |
-          cd ${{ matrix.directory }}
-          make
+          make -C ${{ matrix.directory }}
+
+      - name: Build the renders
+        if: github.ref == 'refs/heads/main'
+        run: |
+          make -C ${{ matrix.directory }} preview
+          git checkout assets
+          git add ${{ matrix.directory }}
+          git commit -m "Update renders for ${{ matrix.directory }}"
+
+      - name: Push the assets branch
+        if: github.ref == 'refs/heads/main'
+        uses: nick-fields/retry@v3
+        with:
+          max_attempts: 10
+          retry_wait_seconds: 3
+          command: |
+            git fetch origin assets
+            git rebase origin/assets
+            git push origin assets
