@@ -43,6 +43,12 @@ jobs:
           Xvfb :99 &
           export DISPLAY=:99
           make -C ${{ matrix.directory }} preview
+
+      - name: Commit the renders
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
           git fetch origin assets
           git checkout assets
           git add ${{ matrix.directory }}
