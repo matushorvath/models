@@ -39,6 +39,10 @@ jobs:
       - name: Build the renders
         if: github.ref == 'refs/heads/main'
         run: |
+          # Generating PNG doesn't work without X: https://github.com/openscad/openscad/issues/1798
+          sudo apt install xvfb
+          Xvfb :99 &
+          export DISPLAY=:99
           make -C ${{ matrix.directory }} preview
           git checkout assets
           git add ${{ matrix.directory }}
